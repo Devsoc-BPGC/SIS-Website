@@ -91,7 +91,7 @@ export default function Navbar() {
             fontWeight={600}
             color={'white'}
             bg={'orange.400'}
-            href={'#'}
+            href={'/register'}
             _hover={{
               bg: 'orange.50',
               color: 'orange.400',
@@ -263,6 +263,7 @@ const MobileNavItem = ({ label, children, href }) => {
 const NAV_ITEMS = [
   {
     label: 'Home',
+    href:'/',
     children: [
       {
         label: 'Explore Design Work',
