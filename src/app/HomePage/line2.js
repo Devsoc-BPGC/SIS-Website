@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 
 export default function Line2() {
   const eventDate = new Date("2024-06-16");
-  // const eventDate = new Date("2023-11-04");
   const [currentDate, setDate] = useState(new Date());
   const dhms = (date) => {
     const dt = eventDate - date + date.getTimezoneOffset() * 60000;
@@ -41,6 +40,15 @@ export default function Line2() {
       clearInterval(timer);
     };
   }, []);
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
+
+  if (!hydrated) {
+    return null;
+  }
 
   return (
     <Flex direction={{ base: "column", md: "row" }} alignItems={"stretch"} bgColor={"#FAC92E"}>
