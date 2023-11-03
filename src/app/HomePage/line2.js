@@ -4,8 +4,8 @@ import { Flex, Text, Image } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 
 export default function Line2() {
-  // const eventDate = new Date("2024-06-16");
-  const eventDate = new Date("2023-11-04");
+  const eventDate = new Date("2024-06-16");
+  // const eventDate = new Date("2023-11-04");
   const [currentDate, setDate] = useState(new Date());
   const dhms = (date) => {
     const dt = eventDate - date + date.getTimezoneOffset() * 60000;
