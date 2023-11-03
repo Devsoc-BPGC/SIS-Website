@@ -111,7 +111,7 @@ const Form1 = (props) => {
             onChange={(e) => {
               props.setFormData((formData) => {
                 const fd = { ...formData, registrationType: e };
-                localStorage.setItem("formData",JSON.stringify(fd));
+                localStorage.setItem("formData", JSON.stringify(fd));
                 return fd;
               });
             }}
@@ -406,7 +406,7 @@ const Form3 = (props) => {
                     glastName: "",
                     gemail: "",
                   };
-                  localStorage.setItem('formData',JSON.stringify(fd));
+                  localStorage.setItem("formData", JSON.stringify(fd));
                   return fd;
                 });
               }}
@@ -488,7 +488,7 @@ const Form3 = (props) => {
               onClick={() => {
                 props.setFormData((formData) => {
                   const fd = { ...formData, gadd: true };
-                  localStorage.setItem('formData',JSON.stringify(fd));
+                  localStorage.setItem("formData", JSON.stringify(fd));
                   return fd;
                 });
                 onClose();
@@ -620,6 +620,8 @@ export default function Register() {
     gemail: "",
   });
 
+  const [submitting,steSubmitting] = useState(false);
+
   useEffect(() => {
     if (localStorage.getItem("formData") !== null) {
       setFormData(JSON.parse(localStorage.getItem("formData")));
@@ -632,7 +634,7 @@ export default function Register() {
     const handler = (e) => {
       setFormData((formData) => {
         const fd = { ...formData, [x]: e.target.value };
-        localStorage.setItem('formData',JSON.stringify(fd));
+        localStorage.setItem("formData", JSON.stringify(fd));
         return fd;
       });
     };
@@ -713,17 +715,49 @@ export default function Register() {
             </Flex>
             {step === 5 ? (
               <Button
+                isLoading={submitting}
                 w="7rem"
                 colorScheme="red"
                 variant="solid"
                 onClick={() => {
-                  toast({
-                    title: "Account created.",
-                    description: "We've created your account for you.",
-                    status: "success",
-                    duration: 3000,
-                    isClosable: true,
-                  });
+                  steSubmitting(true);
+                  fetch("/api/submit", {
+                    method: "POST",
+                    body: JSON.stringify(formData),
+                    headers : {
+                      "Content-Type" : "application/json"
+                    }
+                  })
+                    .then((res) => {
+                      if (res.status === 200) {
+                        toast({
+                          title: "Account created.",
+                          description: "We've created your account for you.",
+                          status: "success",
+                          duration: 3000,
+                          isClosable: true,
+                        });
+                      } else {
+                        toast({
+                          title: "Request Failed",
+                          description: "Failed to create account",
+                          status: "failure",
+                          duration: 3000,
+                          isClosable: true,
+                        });
+                      }
+                      steSubmitting(false);
+                    })
+                    .catch((err) => {
+                      toast({
+                        title: "Server Error",
+                        description: "Failed to send request!",
+                        status: "failure",
+                        duration: 3000,
+                        isClosable: true,
+                      });
+                      steSubmitting(false);
+                    });
                 }}
               >
                 Submit
