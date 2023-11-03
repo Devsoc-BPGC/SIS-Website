@@ -35,14 +35,14 @@ export default function Line3 () {
                 // padding={'5%'}
             >
                 <Image src="/symposium.png" width={500} height={350} alt='symposium'/>
-                <Flex alignItems={'center'} width={'100%'} justifyContent={'center'}>
+                <Flex alignItems={'center'} width={'100%'} justifyContent={'center'} ml={{base:"2%",md:"0"}}>
                     <Flex direction={'column'}>
-                        <Text fontSize={'2xl'}>The</Text>
+                        <Text fontSize={{base:'xl',md:'2xl'}}>The</Text>
                         <Flex alignItems={'end'}>
-                            <Text fontSize={'8xl'} fontWeight={'semibold'} marginTop={'-1.5rem'} marginBottom={'-1.5rem'}>24</Text>
-                            <Text fontSize={'4xl'} fontWeight={'semibold'}>th</Text>
+                            <Text fontSize={{base:'4xl',md:'8xl'}} fontWeight={'semibold'} mt="-2%" mb="-2%">24</Text>
+                            <Text fontSize={{base:'2xl',md:'4xl'}} fontWeight={'semibold'}>th</Text>
                         </Flex>
-                        <Text fontSize={'2xl'}>International Symposium</Text>
+                        <Text fontSize={{base:'xl',md:'2xl'}}>International Symposium</Text>
                     </Flex>
                 </Flex>
             </Flex>
