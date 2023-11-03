@@ -1,5 +1,4 @@
 import {
-    Box,
     Flex,
     Text
 } from '@chakra-ui/react'
@@ -13,7 +12,7 @@ export default function Line1 () {
             alignItems={'stretch'}
             bgColor={'#6AD4D7'}
         >
-            <Image src="/Bdome.png" width={600} height={600} alt={"bdome"} style={{margin:0,padding:0}}/>
+            <Image src="/Bdome.png" width={700} height={700} alt={"bdome"} />
             <Flex
                 direction={'column'}
                 height={'-moz-max-content'}
@@ -21,7 +20,7 @@ export default function Line1 () {
                 bgColor={'#6AD4D7'}
                 alignItems={'center'}
                 justifyContent={'center'}
-                padding={'5%'}
+                // padding={'5%'}
             >
                 <Flex
                     marginBottom={{base:'1rem',md:'2rem'}}
