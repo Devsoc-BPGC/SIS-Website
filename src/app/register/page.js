@@ -643,7 +643,6 @@ export default function Register() {
 
   return (
     <ChakraProvider>
-      <Navbar />
       <Box
         borderWidth="1px"
         rounded="lg"
