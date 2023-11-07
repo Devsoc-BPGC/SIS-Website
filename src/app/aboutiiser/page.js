@@ -20,7 +20,7 @@ export default function page() {
         </Box>
       </Flex>
       <Text
-        fontSize={["1rem", "2rem", "2.5rem"]}
+        fontSize={["2rem", "2rem", "2.5rem"]}
         as="bold"
         fontWeight="bold"
         // noOfLines={[1, 2, 3]}
