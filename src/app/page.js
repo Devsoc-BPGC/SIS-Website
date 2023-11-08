@@ -9,7 +9,6 @@ export default function Home() {
   return (
     <>
       <ChakraProvider>
-        <Navbar />
         <Line1 />
         <Line2 />
         <Line3 />
