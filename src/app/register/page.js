@@ -1,6 +1,6 @@
 "use client";
-
 import { useState, useEffect } from "react";
+import validate from "./validator.js";
 import {
   Progress,
   Box,
@@ -40,6 +40,7 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
+  FormErrorMessage,
 } from "@chakra-ui/react";
 
 import Navbar from "../HomePage/navbar";
@@ -51,7 +52,7 @@ const Form1 = (props) => {
         Invitee Information
       </Heading>
       <Flex>
-        <FormControl mr="5%">
+        <FormControl mr="5%" isRequired>
           <FormLabel>Prefix</FormLabel>
           <Select
             value={props.formData.prefix}
@@ -66,7 +67,7 @@ const Form1 = (props) => {
         </FormControl>
       </Flex>
       <Flex mt="2%">
-        <FormControl mr="5%">
+        <FormControl mr="5%" isRequired>
           <FormLabel htmlFor="first-name" fontWeight={"normal"}>
             First name
           </FormLabel>
@@ -78,7 +79,7 @@ const Form1 = (props) => {
           />
         </FormControl>
 
-        <FormControl>
+        <FormControl isRequired>
           <FormLabel htmlFor="last-name" fontWeight={"normal"}>
             Last name
           </FormLabel>
@@ -90,7 +91,7 @@ const Form1 = (props) => {
           />
         </FormControl>
       </Flex>
-      <FormControl mt="2%">
+      <FormControl mt="2%" isRequired>
         <FormLabel htmlFor="email" fontWeight={"normal"}>
           Email address
         </FormLabel>
@@ -102,7 +103,7 @@ const Form1 = (props) => {
         />
       </FormControl>
 
-      <FormControl mt="2%">
+      <FormControl mt="2%" isRequired>
         <FormControl as="fieldset">
           <FormLabel as="legend">Registration type</FormLabel>
           <RadioGroup
@@ -135,10 +136,10 @@ const Form1 = (props) => {
 const Form2 = (props) => {
   return (
     <>
-      <Heading w="100%" textAlign={"center"} fontWeight="normal" mb="2%">
+      <Heading w="100%" textAlign={"center"} fontWeight="normal" mb="2%" >
         Registration Information
       </Heading>
-      <FormControl as={GridItem} colSpan={6}>
+      <FormControl as={GridItem} colSpan={6} isRequired>
         <FormLabel
           htmlFor="company_university"
           fontSize="sm"
@@ -166,7 +167,7 @@ const Form2 = (props) => {
         />
       </FormControl>
 
-      <FormControl as={GridItem} colSpan={6}>
+      <FormControl as={GridItem} colSpan={6} isRequired>
         <FormLabel
           htmlFor="job_title"
           fontSize="sm"
@@ -194,7 +195,7 @@ const Form2 = (props) => {
         />
       </FormControl>
 
-      <FormControl as={GridItem} colSpan={6}>
+      <FormControl as={GridItem} colSpan={6} isRequired>
         <FormLabel
           htmlFor="address"
           fontSize="sm"
@@ -222,7 +223,7 @@ const Form2 = (props) => {
         />
       </FormControl>
 
-      <FormControl as={GridItem} colSpan={6}>
+      <FormControl as={GridItem} colSpan={6} isRequired>
         <FormLabel
           htmlFor="country"
           fontSize="sm"
@@ -250,7 +251,7 @@ const Form2 = (props) => {
         />
       </FormControl>
 
-      <FormControl as={GridItem} colSpan={[6, 6, null, 2]}>
+      <FormControl as={GridItem} colSpan={[6, 6, null, 2]} isRequired>
         <FormLabel
           htmlFor="city"
           fontSize="sm"
@@ -278,7 +279,7 @@ const Form2 = (props) => {
         />
       </FormControl>
 
-      <FormControl as={GridItem} colSpan={[6, 3, null, 2]}>
+      <FormControl as={GridItem} colSpan={[6, 3, null, 2]} isRequired>
         <FormLabel
           htmlFor="state"
           fontSize="sm"
@@ -306,7 +307,7 @@ const Form2 = (props) => {
         />
       </FormControl>
 
-      <FormControl as={GridItem} colSpan={[6, 3, null, 2]}>
+      <FormControl as={GridItem} colSpan={[6, 3, null, 2]} isRequired>
         <FormLabel
           htmlFor="postal_code"
           fontSize="sm"
@@ -334,7 +335,7 @@ const Form2 = (props) => {
         />
       </FormControl>
 
-      <FormControl as={GridItem} colSpan={[6, 3, null, 2]}>
+      <FormControl as={GridItem} colSpan={[6, 3, null, 2]} isRequired>
         <FormLabel
           htmlFor="work_phone"
           fontSize="sm"
@@ -435,7 +436,7 @@ const Form3 = (props) => {
           <ModalCloseButton />
           <ModalBody>
             <Flex direction={"column"} justifyContent="center">
-              <FormControl mr="5%">
+              <FormControl mr="5%" isRequired>
                 <FormLabel htmlFor="first-name" fontWeight={"normal"}>
                   First name
                 </FormLabel>
@@ -447,7 +448,7 @@ const Form3 = (props) => {
                 />
               </FormControl>
 
-              <FormControl>
+              <FormControl isRequired>
                 <FormLabel htmlFor="last-name" fontWeight={"normal"}>
                   Last name
                 </FormLabel>
@@ -459,7 +460,7 @@ const Form3 = (props) => {
                 />
               </FormControl>
 
-              <FormControl mt="2%">
+              <FormControl mt="2%" isRequired>
                 <FormLabel htmlFor="email" fontWeight={"normal"}>
                   Email address
                 </FormLabel>
@@ -719,45 +720,52 @@ export default function Register() {
                 colorScheme="red"
                 variant="solid"
                 onClick={() => {
-                  steSubmitting(true);
-                  fetch("/api/submit", {
-                    method: "POST",
-                    body: JSON.stringify(formData),
-                    headers : {
-                      "Content-Type" : "application/json"
-                    }
-                  })
-                    .then((res) => {
-                      if (res.status === 200) {
+                  const err = validate(formData)
+                  if(Object.keys(err).length==0){
+                    steSubmitting(true);
+                    fetch("/api/submit", {
+                      method: "POST",
+                      body: JSON.stringify(formData),
+                      headers : {
+                        "Content-Type" : "application/json"
+                      }
+                    })
+                      .then((res) => {
+                        if (res.status === 200) {
+                          toast({
+                            title: "Account created.",
+                            description: "We've created your account for you.",
+                            status: "success",
+                            duration: 3000,
+                            isClosable: true,
+                          });
+                        } else {
+                          toast({
+                            title: "Request Failed",
+                            description: "Failed to create account",
+                            status: "failure",
+                            duration: 3000,
+                            isClosable: true,
+                          });
+                        }
+                        steSubmitting(false);
+                      })
+                      .catch((err) => {
                         toast({
-                          title: "Account created.",
-                          description: "We've created your account for you.",
-                          status: "success",
-                          duration: 3000,
-                          isClosable: true,
-                        });
-                      } else {
-                        toast({
-                          title: "Request Failed",
-                          description: "Failed to create account",
+                          title: "Server Error",
+                          description: "Failed to send request!",
                           status: "failure",
                           duration: 3000,
                           isClosable: true,
                         });
-                      }
-                      steSubmitting(false);
-                    })
-                    .catch((err) => {
-                      toast({
-                        title: "Server Error",
-                        description: "Failed to send request!",
-                        status: "failure",
-                        duration: 3000,
-                        isClosable: true,
+                        steSubmitting(false);
                       });
-                      steSubmitting(false);
-                    });
-                }}
+                }else{
+                  var errprompt = Object.values(err).join();
+                  window.alert(errprompt);
+                }
+              }
+            }
               >
                 Submit
               </Button>
