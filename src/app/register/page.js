@@ -740,7 +740,7 @@ export default function Register() {
                         toast({
                           title: "Request Failed",
                           description: "Failed to create account",
-                          status: "failure",
+                          status: "error",
                           duration: 3000,
                           isClosable: true,
                         });
@@ -751,7 +751,7 @@ export default function Register() {
                       toast({
                         title: "Server Error",
                         description: "Failed to send request!",
-                        status: "failure",
+                        status: "error",
                         duration: 3000,
                         isClosable: true,
                       });
