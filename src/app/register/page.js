@@ -764,35 +764,35 @@ export default function Register() {
                         "Content-Type" : "application/json"
                       }
                     })
-                      .then((res) => {
-                        if (res.status === 200) {
-                          toast({
-                            title: "Account created.",
-                            description: "We've created your account for you.",
-                            status: "success",
-                            duration: 3000,
-                            isClosable: true,
-                          });
-                        } else {
-                          toast({
-                            title: "Request Failed",
-                            description: "Failed to create account",
-                            status: "failure",
-                            duration: 3000,
-                            isClosable: true,
-                          });
-                        }
+                    .then((res) => {
+                      if (res.status === 200) {
+                        toast({
+                          title: "Account created.",
+                          description: "We've created your account for you.",
+                          status: "success",
+                          duration: 3000,
+                          isClosable: true,
+                        });
                         steSubmitting(false);
-                      })
-                      .catch((err) => {
+                      } else {
                         toast({
                           title: "Request Failed",
                           description: "Failed to create account",
-                          status: "error",
+                          status: "failure",
                           duration: 3000,
                           isClosable: true,
                         });
                       }
+                      steSubmitting(false);
+                    })
+                    .catch((err) => {
+                      toast({
+                        title: "Request Failed",
+                        description: "Failed to create account",
+                        status: "error",
+                        duration: 3000,
+                        isClosable: true,
+                      });
                       steSubmitting(false);
                     })
                     .catch((err) => {
@@ -803,6 +803,7 @@ export default function Register() {
                         duration: 3000,
                         isClosable: true,
                       });
+                    });
                 }else{
                   var errprompt = Object.values(err).join();
                   window.alert(errprompt);
