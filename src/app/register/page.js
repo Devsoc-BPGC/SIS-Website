@@ -1,6 +1,10 @@
 "use client";
-
 import { useState, useEffect } from "react";
+import validate from "./validator.js";
+import { Country,State } from 'country-state-city';
+import validate_1 from "./validator_1.js";
+import validate_2 from "./validator_2.js";
+import validate_3 from "./validator_3.js";
 import {
   Progress,
   Box,
@@ -40,9 +44,21 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
+  FormErrorMessage,
 } from "@chakra-ui/react";
 
 import Navbar from "../HomePage/navbar";
+const CountryData = Country.getAllCountries().map(country => ({
+  value: country.isoCode,
+  displayValue: `${country.name} - ${country.isoCode}`
+}))
+function getState(countryCode){
+  const StateData = State.getStatesOfCountry(countryCode).map(state => ({
+      value: state.name,
+      displayValue: `${state.name} - ${state.isoCode}`
+  }))
+  return StateData;
+}
 
 const Form1 = (props) => {
   return (
@@ -51,7 +67,7 @@ const Form1 = (props) => {
         Invitee Information
       </Heading>
       <Flex>
-        <FormControl mr="5%">
+        <FormControl mr="5%" isRequired>
           <FormLabel>Prefix</FormLabel>
           <Select
             value={props.formData.prefix}
@@ -66,7 +82,7 @@ const Form1 = (props) => {
         </FormControl>
       </Flex>
       <Flex mt="2%">
-        <FormControl mr="5%">
+        <FormControl mr="5%" isRequired>
           <FormLabel htmlFor="first-name" fontWeight={"normal"}>
             First name
           </FormLabel>
@@ -78,7 +94,7 @@ const Form1 = (props) => {
           />
         </FormControl>
 
-        <FormControl>
+        <FormControl isRequired>
           <FormLabel htmlFor="last-name" fontWeight={"normal"}>
             Last name
           </FormLabel>
@@ -90,7 +106,7 @@ const Form1 = (props) => {
           />
         </FormControl>
       </Flex>
-      <FormControl mt="2%">
+      <FormControl mt="2%" isRequired>
         <FormLabel htmlFor="email" fontWeight={"normal"}>
           Email address
         </FormLabel>
@@ -102,7 +118,7 @@ const Form1 = (props) => {
         />
       </FormControl>
 
-      <FormControl mt="2%">
+      <FormControl mt="2%" isRequired>
         <FormControl as="fieldset">
           <FormLabel as="legend">Registration type</FormLabel>
           <RadioGroup
@@ -135,10 +151,10 @@ const Form1 = (props) => {
 const Form2 = (props) => {
   return (
     <>
-      <Heading w="100%" textAlign={"center"} fontWeight="normal" mb="2%">
+      <Heading w="100%" textAlign={"center"} fontWeight="normal" mb="2%" >
         Registration Information
       </Heading>
-      <FormControl as={GridItem} colSpan={6}>
+      <FormControl as={GridItem} colSpan={6} isRequired>
         <FormLabel
           htmlFor="company_university"
           fontSize="sm"
@@ -166,7 +182,7 @@ const Form2 = (props) => {
         />
       </FormControl>
 
-      <FormControl as={GridItem} colSpan={6}>
+      <FormControl as={GridItem} colSpan={6} isRequired>
         <FormLabel
           htmlFor="job_title"
           fontSize="sm"
@@ -194,7 +210,7 @@ const Form2 = (props) => {
         />
       </FormControl>
 
-      <FormControl as={GridItem} colSpan={6}>
+      <FormControl as={GridItem} colSpan={6} isRequired>
         <FormLabel
           htmlFor="address"
           fontSize="sm"
@@ -222,7 +238,7 @@ const Form2 = (props) => {
         />
       </FormControl>
 
-      <FormControl as={GridItem} colSpan={6}>
+      <FormControl as={GridItem} colSpan={6} isRequired>
         <FormLabel
           htmlFor="country"
           fontSize="sm"
@@ -235,7 +251,7 @@ const Form2 = (props) => {
         >
           Country/Region
         </FormLabel>
-        <Input
+        <Select
           type="text"
           name="country"
           id="country"
@@ -247,10 +263,16 @@ const Form2 = (props) => {
           rounded="md"
           value={props.formData.country}
           onChange={props.getHandler("country")}
-        />
+        >
+          		{
+			CountryData.map((option, index) => {
+				return <option key={index} value={option.value}>{option.displayValue}</option>
+			})
+		}
+          </Select>
       </FormControl>
 
-      <FormControl as={GridItem} colSpan={[6, 6, null, 2]}>
+      <FormControl as={GridItem} colSpan={[6, 6, null, 2]} isRequired>
         <FormLabel
           htmlFor="city"
           fontSize="sm"
@@ -278,7 +300,7 @@ const Form2 = (props) => {
         />
       </FormControl>
 
-      <FormControl as={GridItem} colSpan={[6, 3, null, 2]}>
+      <FormControl as={GridItem} colSpan={[6, 3, null, 2]} isRequired>
         <FormLabel
           htmlFor="state"
           fontSize="sm"
@@ -291,7 +313,7 @@ const Form2 = (props) => {
         >
           State / Province
         </FormLabel>
-        <Input
+        <Select
           type="text"
           name="state"
           id="state"
@@ -303,10 +325,16 @@ const Form2 = (props) => {
           rounded="md"
           value={props.formData.state}
           onChange={props.getHandler("state")}
-        />
+        >
+                 		{
+			getState(props.formData.country).map((option, index) => {
+				return <option key={index} value={option.value}>{option.displayValue}</option>
+			})
+		}
+          </Select>
       </FormControl>
 
-      <FormControl as={GridItem} colSpan={[6, 3, null, 2]}>
+      <FormControl as={GridItem} colSpan={[6, 3, null, 2]} isRequired>
         <FormLabel
           htmlFor="postal_code"
           fontSize="sm"
@@ -334,7 +362,7 @@ const Form2 = (props) => {
         />
       </FormControl>
 
-      <FormControl as={GridItem} colSpan={[6, 3, null, 2]}>
+      <FormControl as={GridItem} colSpan={[6, 3, null, 2]} isRequired>
         <FormLabel
           htmlFor="work_phone"
           fontSize="sm"
@@ -435,7 +463,7 @@ const Form3 = (props) => {
           <ModalCloseButton />
           <ModalBody>
             <Flex direction={"column"} justifyContent="center">
-              <FormControl mr="5%">
+              <FormControl mr="5%" isRequired>
                 <FormLabel htmlFor="first-name" fontWeight={"normal"}>
                   First name
                 </FormLabel>
@@ -447,7 +475,7 @@ const Form3 = (props) => {
                 />
               </FormControl>
 
-              <FormControl>
+              <FormControl isRequired>
                 <FormLabel htmlFor="last-name" fontWeight={"normal"}>
                   Last name
                 </FormLabel>
@@ -459,7 +487,7 @@ const Form3 = (props) => {
                 />
               </FormControl>
 
-              <FormControl mt="2%">
+              <FormControl mt="2%" isRequired>
                 <FormLabel htmlFor="email" fontWeight={"normal"}>
                   Email address
                 </FormLabel>
@@ -485,6 +513,7 @@ const Form3 = (props) => {
             </Button>
             <Button
               colorScheme={"orange"}
+              isDisabled={!props.s3}
               onClick={() => {
                 props.setFormData((formData) => {
                   const fd = { ...formData, gadd: true };
@@ -599,6 +628,9 @@ const Form5 = (props) => {
 export default function Register() {
   const toast = useToast();
   const [step, setStep] = useState(1);
+  var s1 = false;
+  var s2 = false;
+  var s3 = false;
   const [progress, setProgress] = useState(20.0);
   const [formData, setFormData] = useState({
     prefix: "Dr.",
@@ -640,7 +672,9 @@ export default function Register() {
     };
     return handler;
   };
-
+  s1 = (Object.keys(validate_1(formData)).length==0);
+  s2 = (Object.keys(validate_2(formData)).length==0);
+  s3 = (Object.keys(validate_3(formData)).length==0);
   return (
     <ChakraProvider>
       <Box
@@ -671,6 +705,7 @@ export default function Register() {
         ) : step === 3 ? (
           <Form3
             formData={formData}
+            s3={s3}
             getHandler={getHandler}
             setFormData={setFormData}
           />
@@ -697,7 +732,7 @@ export default function Register() {
               </Button>
               <Button
                 w="7rem"
-                isDisabled={step === 5}
+                isDisabled={step === 5 || (step===1 && !s1) || (step===2 && !s2)}
                 onClick={() => {
                   setStep(step + 1);
                   if (step === 5) {
@@ -719,24 +754,37 @@ export default function Register() {
                 colorScheme="red"
                 variant="solid"
                 onClick={() => {
-                  steSubmitting(true);
-                  fetch("/api/submit", {
-                    method: "POST",
-                    body: JSON.stringify(formData),
-                    headers : {
-                      "Content-Type" : "application/json"
-                    }
-                  })
-                    .then((res) => {
-                      if (res.status === 200) {
-                        toast({
-                          title: "Account created.",
-                          description: "We've created your account for you.",
-                          status: "success",
-                          duration: 3000,
-                          isClosable: true,
-                        });
-                      } else {
+                  const err = validate(formData)
+                  if(Object.keys(err).length==0){
+                    steSubmitting(true);
+                    fetch("/api/submit", {
+                      method: "POST",
+                      body: JSON.stringify(formData),
+                      headers : {
+                        "Content-Type" : "application/json"
+                      }
+                    })
+                      .then((res) => {
+                        if (res.status === 200) {
+                          toast({
+                            title: "Account created.",
+                            description: "We've created your account for you.",
+                            status: "success",
+                            duration: 3000,
+                            isClosable: true,
+                          });
+                        } else {
+                          toast({
+                            title: "Request Failed",
+                            description: "Failed to create account",
+                            status: "failure",
+                            duration: 3000,
+                            isClosable: true,
+                          });
+                        }
+                        steSubmitting(false);
+                      })
+                      .catch((err) => {
                         toast({
                           title: "Request Failed",
                           description: "Failed to create account",
@@ -755,9 +803,12 @@ export default function Register() {
                         duration: 3000,
                         isClosable: true,
                       });
-                      steSubmitting(false);
-                    });
-                }}
+                }else{
+                  var errprompt = Object.values(err).join();
+                  window.alert(errprompt);
+                }
+              }
+            }
               >
                 Submit
               </Button>
