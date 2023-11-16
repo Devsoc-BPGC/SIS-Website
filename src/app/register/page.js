@@ -1,6 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
 import validate from "./validator.js";
+import { Country,State } from 'country-state-city';
+import validate_1 from "./validator_1.js";
+import validate_2 from "./validator_2.js";
+import validate_3 from "./validator_3.js";
 import {
   Progress,
   Box,
@@ -44,6 +48,17 @@ import {
 } from "@chakra-ui/react";
 
 import Navbar from "../HomePage/navbar";
+const CountryData = Country.getAllCountries().map(country => ({
+  value: country.isoCode,
+  displayValue: `${country.name} - ${country.isoCode}`
+}))
+function getState(countryCode){
+  const StateData = State.getStatesOfCountry(countryCode).map(state => ({
+      value: state.name,
+      displayValue: `${state.name} - ${state.isoCode}`
+  }))
+  return StateData;
+}
 
 const Form1 = (props) => {
   return (
@@ -236,7 +251,7 @@ const Form2 = (props) => {
         >
           Country/Region
         </FormLabel>
-        <Input
+        <Select
           type="text"
           name="country"
           id="country"
@@ -248,7 +263,13 @@ const Form2 = (props) => {
           rounded="md"
           value={props.formData.country}
           onChange={props.getHandler("country")}
-        />
+        >
+          		{
+			CountryData.map((option, index) => {
+				return <option key={index} value={option.value}>{option.displayValue}</option>
+			})
+		}
+          </Select>
       </FormControl>
 
       <FormControl as={GridItem} colSpan={[6, 6, null, 2]} isRequired>
@@ -292,7 +313,7 @@ const Form2 = (props) => {
         >
           State / Province
         </FormLabel>
-        <Input
+        <Select
           type="text"
           name="state"
           id="state"
@@ -304,7 +325,13 @@ const Form2 = (props) => {
           rounded="md"
           value={props.formData.state}
           onChange={props.getHandler("state")}
-        />
+        >
+                 		{
+			getState(props.formData.country).map((option, index) => {
+				return <option key={index} value={option.value}>{option.displayValue}</option>
+			})
+		}
+          </Select>
       </FormControl>
 
       <FormControl as={GridItem} colSpan={[6, 3, null, 2]} isRequired>
@@ -486,6 +513,7 @@ const Form3 = (props) => {
             </Button>
             <Button
               colorScheme={"orange"}
+              isDisabled={!props.s3}
               onClick={() => {
                 props.setFormData((formData) => {
                   const fd = { ...formData, gadd: true };
@@ -600,6 +628,9 @@ const Form5 = (props) => {
 export default function Register() {
   const toast = useToast();
   const [step, setStep] = useState(1);
+  var s1 = false;
+  var s2 = false;
+  var s3 = false;
   const [progress, setProgress] = useState(20.0);
   const [formData, setFormData] = useState({
     prefix: "Dr.",
@@ -641,7 +672,9 @@ export default function Register() {
     };
     return handler;
   };
-
+  s1 = (Object.keys(validate_1(formData)).length==0);
+  s2 = (Object.keys(validate_2(formData)).length==0);
+  s3 = (Object.keys(validate_3(formData)).length==0);
   return (
     <ChakraProvider>
       <Box
@@ -672,6 +705,7 @@ export default function Register() {
         ) : step === 3 ? (
           <Form3
             formData={formData}
+            s3={s3}
             getHandler={getHandler}
             setFormData={setFormData}
           />
@@ -698,7 +732,7 @@ export default function Register() {
               </Button>
               <Button
                 w="7rem"
-                isDisabled={step === 5}
+                isDisabled={step === 5 || (step===1 && !s1) || (step===2 && !s2)}
                 onClick={() => {
                   setStep(step + 1);
                   if (step === 5) {
