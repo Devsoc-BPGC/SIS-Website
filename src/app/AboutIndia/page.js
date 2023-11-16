@@ -1,11 +1,9 @@
 "use client";
 import { Box,Image,Text,ChakraProvider } from "@chakra-ui/react";
-import Navbar from "../HomePage/navbar";
 export default function AboutIndia() {
     var imgHeight = "7rem";
     return (
         <ChakraProvider>
-        <Navbar />
         <Box display="flex" flexDirection="column" alignItems="center">
         <Box display="flex" flexDirection="row" justifyContent="center" maxWidth="45rem">
         <Box height={imgHeight} width="18%" ><Image src="/image2.png" height="100%" objectFit="cover"></Image></Box>

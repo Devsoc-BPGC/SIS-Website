@@ -786,13 +786,22 @@ export default function Register() {
                       })
                       .catch((err) => {
                         toast({
-                          title: "Server Error",
-                          description: "Failed to send request!",
-                          status: "failure",
+                          title: "Request Failed",
+                          description: "Failed to create account",
+                          status: "error",
                           duration: 3000,
                           isClosable: true,
                         });
-                        steSubmitting(false);
+                      }
+                      steSubmitting(false);
+                    })
+                    .catch((err) => {
+                      toast({
+                        title: "Server Error",
+                        description: "Failed to send request!",
+                        status: "error",
+                        duration: 3000,
+                        isClosable: true,
                       });
                 }else{
                   var errprompt = Object.values(err).join();

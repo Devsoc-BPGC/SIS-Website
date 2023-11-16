@@ -264,31 +264,34 @@ const NAV_ITEMS = [
   {
     label: 'Home',
     href:'/',
-    children: [
-      {
-        label: 'Explore Design Work',
-        subLabel: 'Trending Design to inspire you',
-        href: '#',
-      },
-      {
-        label: 'New & Noteworthy',
-        subLabel: 'Up-and-coming Designers',
-        href: '#',
-      },
-    ],
   },
   {
     label: 'About',
     children: [
       {
-        label: 'Job Board',
-        subLabel: 'Find your dream design job',
-        href: '#',
+        label: 'About BITS',
+        subLabel: 'Organizing Institute',
+        href: '/aboutbits',
       },
       {
-        label: 'Freelance Projects',
-        subLabel: 'An exclusive list for contract work',
-        href: '#',
+        label: 'About IISER',
+        subLabel: 'Organizing Institute',
+        href: '/aboutiiser',
+      },
+      {
+        label: 'About ICT',
+        subLabel: 'Organizing Institute',
+        href: '/aboutict',
+      },
+      {
+        label: 'About India',
+        subLabel: 'venue',
+        href: '/AboutIndia',
+      },
+      {
+        label: 'About Goa',
+        subLabel: 'venue',
+        href: '/AboutGoa',
       },
     ],
   },
