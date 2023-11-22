@@ -139,10 +139,16 @@ const Form1 = (props) => {
               <Radio value="Industry International Delegates">
                 Industry International Delegates
               </Radio>
-              <Radio value="International Students">International Students</Radio>
-              <Radio value="Academic Delegates (National)">Academic Delegates {"(National)"}</Radio>
+              <Radio value="International Students">
+                International Students
+              </Radio>
+              <Radio value="Academic Delegates (National)">
+                Academic Delegates {"(National)"}
+              </Radio>
               <Radio value="Students (National)">Students {"(National)"}</Radio>
-              <Radio value="Industry Delegates (National)">Industry Delegates {"(National)"}</Radio>
+              <Radio value="Industry Delegates (National)">
+                Industry Delegates {"(National)"}
+              </Radio>
             </VStack>
           </RadioGroup>
         </FormControl>
@@ -428,6 +434,7 @@ const Form3 = (props) => {
             <Text>First Name : {props.formData.gfirstName}</Text>
             <Text>Last Name : {props.formData.glastName}</Text>
             <Text>Email : {props.formData.gemail}</Text>
+            <Text>Type : {props.formData.gtype}</Text>
             <Button
               colorScheme={"red"}
               mt="2%"
@@ -440,6 +447,7 @@ const Form3 = (props) => {
                     gfirstName: "",
                     glastName: "",
                     gemail: "",
+                    gtype: "National"
                   };
                   localStorage.setItem("formData", JSON.stringify(fd));
                   return fd;
@@ -506,6 +514,32 @@ const Form3 = (props) => {
                   onChange={props.getHandler("gemail")}
                 />
               </FormControl>
+
+              <FormControl mt="2%" isRequired>
+                <FormControl as="fieldset">
+                  <FormLabel as="legend">Registration type</FormLabel>
+                  <RadioGroup
+                    defaultValue="National"
+                    value={props.formData.gtype}
+                    onChange={(e) => {
+                      props.setFormData((formData) => {
+                        const fd = { ...formData, gtype: e };
+                        localStorage.setItem("formData", JSON.stringify(fd));
+                        return fd;
+                      });
+                    }}
+                  >
+                    <VStack spacing="24px" align="left">
+                      <Radio value="National">
+                        National
+                      </Radio>
+                      <Radio value="International">
+                        International
+                      </Radio>
+                    </VStack>
+                  </RadioGroup>
+                </FormControl>
+              </FormControl>
             </Flex>
           </ModalBody>
 
@@ -539,28 +573,28 @@ const Form3 = (props) => {
   );
 };
 
-const Form4 = (props) => {
-  return (
-    <>
-      <Heading w="100%" textAlign={"center"} fontWeight="normal">
-        Payment
-      </Heading>
-      <Flex
-        mt="2%"
-        justifyContent={"center"}
-        alignItems={"center"}
-        direction={"column"}
-      >
-        <Text>Click on the link below to go to the payment portal.</Text>
-        <Button colorScheme="orange" variant="outline" size="lg" mt="2%">
-          Payment Portal
-        </Button>
-      </Flex>
-    </>
-  );
-};
+// const Form4 = (props) => {
+//   return (
+//     <>
+//       <Heading w="100%" textAlign={"center"} fontWeight="normal">
+//         Payment
+//       </Heading>
+//       <Flex
+//         mt="2%"
+//         justifyContent={"center"}
+//         alignItems={"center"}
+//         direction={"column"}
+//       >
+//         <Text>Click on the link below to go to the payment portal.</Text>
+//         <Button colorScheme="orange" variant="outline" size="lg" mt="2%">
+//           Payment Portal
+//         </Button>
+//       </Flex>
+//     </>
+//   );
+// };
 
-const Form5 = (props) => {
+const Form4 = (props) => {
   return (
     <>
       <Heading w="100%" textAlign={"center"} fontWeight="normal">
@@ -621,6 +655,7 @@ const Form5 = (props) => {
                 <Text>Guest First Name : {props.formData.gfirstName}</Text>
                 <Text>Guest Last Name : {props.formData.glastName}</Text>
                 <Text>Guest Email : {props.formData.gemail}</Text>
+                <Text>Guest Type : {props.formData.gtype}</Text>
               </>
             ) : (
               <Text>No Guest Added</Text>
@@ -638,13 +673,13 @@ export default function Register() {
   var s1 = false;
   var s2 = false;
   var s3 = false;
-  const [progress, setProgress] = useState(20.0);
+  const [progress, setProgress] = useState(25.0);
   const [formData, setFormData] = useState({
     prefix: "Dr.",
     firstName: "",
     lastName: "",
     email: "",
-    registrationType: "Industrial Participant",
+    registrationType: "Academic International Delegate",
     company: "",
     jobTitle: "",
     address: "",
@@ -657,6 +692,7 @@ export default function Register() {
     gfirstName: "",
     glastName: "",
     gemail: "",
+    gtype: "National",
   });
 
   const [submitting, steSubmitting] = useState(false);
@@ -716,10 +752,8 @@ export default function Register() {
             getHandler={getHandler}
             setFormData={setFormData}
           />
-        ) : step === 4 ? (
-          <Form4 />
         ) : (
-          <Form5 formData={formData} />
+          <Form4 formData={formData} />
         )}
         <ButtonGroup mt="5%" w="100%">
           <Flex w="100%" justifyContent="space-between">
@@ -727,7 +761,7 @@ export default function Register() {
               <Button
                 onClick={() => {
                   setStep(step - 1);
-                  setProgress(progress - 20.0);
+                  setProgress(progress - 25.0);
                 }}
                 isDisabled={step === 1}
                 colorScheme="orange"
@@ -740,14 +774,14 @@ export default function Register() {
               <Button
                 w="7rem"
                 isDisabled={
-                  step === 5 || (step === 1 && !s1) || (step === 2 && !s2)
+                  step === 4 || (step === 1 && !s1) || (step === 2 && !s2)
                 }
                 onClick={() => {
                   setStep(step + 1);
-                  if (step === 5) {
+                  if (step === 4) {
                     setProgress(100);
                   } else {
-                    setProgress(progress + 20.0);
+                    setProgress(progress + 25.0);
                   }
                 }}
                 colorScheme="orange"
@@ -756,7 +790,7 @@ export default function Register() {
                 Next
               </Button>
             </Flex>
-            {step === 5 ? (
+            {step === 4 ? (
               <Button
                 isLoading={submitting}
                 w="7rem"
@@ -777,7 +811,7 @@ export default function Register() {
                         if (res.status === 200) {
                           toast({
                             title: "Account created.",
-                            description: "We've created your account for you.",
+                            description: "Your Data has been submitted successfully",
                             status: "success",
                             duration: 3000,
                             isClosable: true,
@@ -792,16 +826,6 @@ export default function Register() {
                             isClosable: true,
                           });
                         }
-                        steSubmitting(false);
-                      })
-                      .catch((err) => {
-                        toast({
-                          title: "Request Failed",
-                          description: "Failed to create account",
-                          status: "error",
-                          duration: 3000,
-                          isClosable: true,
-                        });
                         steSubmitting(false);
                       })
                       .catch((err) => {
