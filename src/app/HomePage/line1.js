@@ -1,10 +1,11 @@
 import {
     Flex,
+    Slide,
     Text
 } from '@chakra-ui/react'
 
 import Image from 'next/image'
-
+import  Carousel  from './carousel';
 export default function Line1 () {
     return (
         <Flex
@@ -12,7 +13,8 @@ export default function Line1 () {
             alignItems={'stretch'}
             bgColor={'#6AD4D7'}
         >
-            <Image src="/Bdome.png" width={700} height={700} alt={"bdome"} />
+            <Carousel/>
+            {/* <Image src="/Bdome.png" width={700} height={700} alt={"bdome"} /> */}
             <Flex
                 direction={'column'}
                 height={'-moz-max-content'}
