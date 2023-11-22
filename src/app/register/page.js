@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import validate from "./validator.js";
-import { Country,State } from 'country-state-city';
+import { Country, State } from "country-state-city";
 import validate_1 from "./validator_1.js";
 import validate_2 from "./validator_2.js";
 import validate_3 from "./validator_3.js";
@@ -48,15 +48,15 @@ import {
 } from "@chakra-ui/react";
 
 import Navbar from "../HomePage/navbar";
-const CountryData = Country.getAllCountries().map(country => ({
+const CountryData = Country.getAllCountries().map((country) => ({
   value: country.isoCode,
-  displayValue: `${country.name} - ${country.isoCode}`
-}))
-function getState(countryCode){
-  const StateData = State.getStatesOfCountry(countryCode).map(state => ({
-      value: state.name,
-      displayValue: `${state.name} - ${state.isoCode}`
-  }))
+  displayValue: `${country.name} - ${country.isoCode}`,
+}));
+function getState(countryCode) {
+  const StateData = State.getStatesOfCountry(countryCode).map((state) => ({
+    value: state.name,
+    displayValue: `${state.name} - ${state.isoCode}`,
+  }));
   return StateData;
 }
 
@@ -122,7 +122,7 @@ const Form1 = (props) => {
         <FormControl as="fieldset">
           <FormLabel as="legend">Registration type</FormLabel>
           <RadioGroup
-            defaultValue="Industrial Participant"
+            defaultValue="Academic International Delegate"
             value={props.formData.registrationType}
             onChange={(e) => {
               props.setFormData((formData) => {
@@ -133,13 +133,16 @@ const Form1 = (props) => {
             }}
           >
             <VStack spacing="24px" align="left">
-              <Radio value="Industrial Participant">
-                Industrial Participant
+              <Radio value="Academic International Delegate">
+                Academic International Delegate
               </Radio>
-              <Radio value="Students/Post Graduates">
-                Students/Post Graduates
+              <Radio value="Industry International Delegates">
+                Industry International Delegates
               </Radio>
-              <Radio value="Academic Professor">Academic Professor</Radio>
+              <Radio value="International Students">International Students</Radio>
+              <Radio value="Academic Delegates (National)">Academic Delegates {"(National)"}</Radio>
+              <Radio value="Students (National)">Students {"(National)"}</Radio>
+              <Radio value="Industry Delegates (National)">Industry Delegates {"(National)"}</Radio>
             </VStack>
           </RadioGroup>
         </FormControl>
@@ -151,7 +154,7 @@ const Form1 = (props) => {
 const Form2 = (props) => {
   return (
     <>
-      <Heading w="100%" textAlign={"center"} fontWeight="normal" mb="2%" >
+      <Heading w="100%" textAlign={"center"} fontWeight="normal" mb="2%">
         Registration Information
       </Heading>
       <FormControl as={GridItem} colSpan={6} isRequired>
@@ -264,12 +267,14 @@ const Form2 = (props) => {
           value={props.formData.country}
           onChange={props.getHandler("country")}
         >
-          		{
-			CountryData.map((option, index) => {
-				return <option key={index} value={option.value}>{option.displayValue}</option>
-			})
-		}
-          </Select>
+          {CountryData.map((option, index) => {
+            return (
+              <option key={index} value={option.value}>
+                {option.displayValue}
+              </option>
+            );
+          })}
+        </Select>
       </FormControl>
 
       <FormControl as={GridItem} colSpan={[6, 6, null, 2]} isRequired>
@@ -326,12 +331,14 @@ const Form2 = (props) => {
           value={props.formData.state}
           onChange={props.getHandler("state")}
         >
-                 		{
-			getState(props.formData.country).map((option, index) => {
-				return <option key={index} value={option.value}>{option.displayValue}</option>
-			})
-		}
-          </Select>
+          {getState(props.formData.country).map((option, index) => {
+            return (
+              <option key={index} value={option.value}>
+                {option.displayValue}
+              </option>
+            );
+          })}
+        </Select>
       </FormControl>
 
       <FormControl as={GridItem} colSpan={[6, 3, null, 2]} isRequired>
@@ -652,7 +659,7 @@ export default function Register() {
     gemail: "",
   });
 
-  const [submitting,steSubmitting] = useState(false);
+  const [submitting, steSubmitting] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("formData") !== null) {
@@ -672,9 +679,9 @@ export default function Register() {
     };
     return handler;
   };
-  s1 = (Object.keys(validate_1(formData)).length==0);
-  s2 = (Object.keys(validate_2(formData)).length==0);
-  s3 = (Object.keys(validate_3(formData)).length==0);
+  s1 = Object.keys(validate_1(formData)).length == 0;
+  s2 = Object.keys(validate_2(formData)).length == 0;
+  s3 = Object.keys(validate_3(formData)).length == 0;
   return (
     <ChakraProvider>
       <Box
@@ -732,7 +739,9 @@ export default function Register() {
               </Button>
               <Button
                 w="7rem"
-                isDisabled={step === 5 || (step===1 && !s1) || (step===2 && !s2)}
+                isDisabled={
+                  step === 5 || (step === 1 && !s1) || (step === 2 && !s2)
+                }
                 onClick={() => {
                   setStep(step + 1);
                   if (step === 5) {
@@ -754,62 +763,61 @@ export default function Register() {
                 colorScheme="red"
                 variant="solid"
                 onClick={() => {
-                  const err = validate(formData)
-                  if(Object.keys(err).length==0){
+                  const err = validate(formData);
+                  if (Object.keys(err).length == 0) {
                     steSubmitting(true);
                     fetch("/api/submit", {
                       method: "POST",
                       body: JSON.stringify(formData),
-                      headers : {
-                        "Content-Type" : "application/json"
-                      }
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
                     })
-                    .then((res) => {
-                      if (res.status === 200) {
+                      .then((res) => {
+                        if (res.status === 200) {
+                          toast({
+                            title: "Account created.",
+                            description: "We've created your account for you.",
+                            status: "success",
+                            duration: 3000,
+                            isClosable: true,
+                          });
+                          steSubmitting(false);
+                        } else {
+                          toast({
+                            title: "Request Failed",
+                            description: "Failed to create account",
+                            status: "error",
+                            duration: 3000,
+                            isClosable: true,
+                          });
+                        }
+                        steSubmitting(false);
+                      })
+                      .catch((err) => {
                         toast({
-                          title: "Account created.",
-                          description: "We've created your account for you.",
-                          status: "success",
+                          title: "Request Failed",
+                          description: "Failed to create account",
+                          status: "error",
                           duration: 3000,
                           isClosable: true,
                         });
                         steSubmitting(false);
-                      } else {
+                      })
+                      .catch((err) => {
                         toast({
-                          title: "Request Failed",
-                          description: "Failed to create account",
-                          status: "failure",
+                          title: "Server Error",
+                          description: "Failed to send request!",
+                          status: "error",
                           duration: 3000,
                           isClosable: true,
                         });
-                      }
-                      steSubmitting(false);
-                    })
-                    .catch((err) => {
-                      toast({
-                        title: "Request Failed",
-                        description: "Failed to create account",
-                        status: "error",
-                        duration: 3000,
-                        isClosable: true,
                       });
-                      steSubmitting(false);
-                    })
-                    .catch((err) => {
-                      toast({
-                        title: "Server Error",
-                        description: "Failed to send request!",
-                        status: "error",
-                        duration: 3000,
-                        isClosable: true,
-                      });
-                    });
-                }else{
-                  var errprompt = Object.values(err).join();
-                  window.alert(errprompt);
-                }
-              }
-            }
+                  } else {
+                    var errprompt = Object.values(err).join();
+                    window.alert(errprompt);
+                  }
+                }}
               >
                 Submit
               </Button>
