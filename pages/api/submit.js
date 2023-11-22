@@ -19,6 +19,7 @@ const FormSchema = new mongoose.Schema({
     gfirstName: String,
     glastName: String,
     gemail: String,
+    gtype : String,
 });
 
 const Form = mongoose.model('FormData',FormSchema);
