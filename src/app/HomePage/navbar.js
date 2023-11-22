@@ -28,7 +28,7 @@ export default function Navbar() {
 
   return (
     <Box
-      marginBottom={'10px'}
+      marginBottom={'0'}
     >
       <Flex
         bg={useColorModeValue('white', 'gray.800')}

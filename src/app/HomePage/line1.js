@@ -52,6 +52,13 @@ export default function Line1 () {
                         fontWeight={'extrabold'}
                         justifyContent={'center'}
                     >
+                        <Text 
+                            fontSize={'xl'}
+                            color={'orange.500'}
+                            marginTop={'2%'}
+                        >
+                            24th International Symposium
+                        </Text>
                         <Text
                             align={'left'}
                         >
@@ -67,7 +74,7 @@ export default function Line1 () {
                 </Flex>
                 <Text
                     fontFamily={'sans-serif'}
-                    color={'white'}
+                    color={'black'}
                     fontSize={'xl'}
                 >
                     Birla Institute Of Technology & Science Pilani, K.K. Birla Goa Campus
