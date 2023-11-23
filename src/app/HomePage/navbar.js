@@ -282,7 +282,18 @@ const NAV_ITEMS = [
   },
   {
     label: '2024 Conference',
-    href: '#',
+    children: [
+      {
+        label: 'Organising Committee',
+        subLabel: 'List of Committee Members',
+        href: '/OrganisingCommittee',
+      },
+      {
+        label: 'Speakers',
+        subLabel: 'List of Speakers for SIS 2024',
+        href: '/Speakers',
+      },
+    ],
   },
   {
     label: 'Contact',
