@@ -269,13 +269,13 @@ const NAV_ITEMS = [
     label: 'About',
     children: [
       {
-        label: 'About BITS,ICT and IISER Pune',
-        subLabel: 'Organizing Institute',
+        label: 'Organizing Institutes',
+        subLabel: 'About BITS,ICT and IISER Pune',
         href: '/aboutpartners',
       },
       {
-        label: 'About Goa and India',
-        subLabel: 'venue',
+        label: 'Venue',
+        subLabel: 'About Goa and India',
         href: '/aboutlocation',
       },
     ],
