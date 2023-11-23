@@ -45,6 +45,8 @@ import {
   AccordionPanel,
   AccordionIcon,
   FormErrorMessage,
+  Stack,
+  Checkbox,
 } from "@chakra-ui/react";
 
 import Navbar from "../HomePage/navbar";
@@ -73,6 +75,7 @@ const Form1 = (props) => {
             value={props.formData.prefix}
             onChange={props.getHandler("prefix")}
           >
+            <option value="Prof..">Prof.</option>
             <option value="Dr.">Dr.</option>
             <option value="Mr.">Mr.</option>
             <option value="Mrs.">Mrs.</option>
@@ -107,6 +110,25 @@ const Form1 = (props) => {
         </FormControl>
       </Flex>
       <FormControl mt="2%" isRequired>
+        <Text>Gender : </Text>
+        <RadioGroup
+          onChange={(e) => {
+            props.setFormData((formData) => {
+              const fd = { ...formData, gender: e };
+              localStorage.setItem("formData", JSON.stringify(fd));
+              return fd;
+            });
+          }}
+          value={props.formData.gender}
+        >
+          <Stack direction="row">
+            <Radio value="male">Male</Radio>
+            <Radio value="female">Female</Radio>
+            <Radio value="other">Other</Radio>
+          </Stack>
+        </RadioGroup>
+      </FormControl>
+      <FormControl mt="2%" isRequired>
         <FormLabel htmlFor="email" fontWeight={"normal"}>
           Email address
         </FormLabel>
@@ -118,11 +140,30 @@ const Form1 = (props) => {
         />
       </FormControl>
 
+      <FormControl mt="2%">
+        <FormLabel>Invited Speakers</FormLabel>
+        <Checkbox
+          isChecked={props.formData.invitedSpeaker === "yes"}
+          onChange={(e) => {
+            props.setFormData((formData) => {
+              const fd = {
+                ...formData,
+                invitedSpeaker: e.target.checked ? "yes" : "no",
+              };
+              localStorage.setItem("formData", JSON.stringify(fd));
+              return fd;
+            });
+          }}
+        >
+          Are you an invited speaker?
+        </Checkbox>
+      </FormControl>
+
       <FormControl mt="2%" isRequired>
-        <FormControl as="fieldset">
+        <FormControl as="fieldset" isRequired>
           <FormLabel as="legend">Registration type</FormLabel>
           <RadioGroup
-            defaultValue="Academic International Delegate"
+            defaultValue="International Delegate (Academic)"
             value={props.formData.registrationType}
             onChange={(e) => {
               props.setFormData((formData) => {
@@ -133,22 +174,20 @@ const Form1 = (props) => {
             }}
           >
             <VStack spacing="24px" align="left">
-              <Radio value="Academic International Delegate">
-                Academic International Delegate
+              <Radio value="International Delegate (Academic)">
+                International Delegate {"(Academic)"}
               </Radio>
-              <Radio value="Industry International Delegates">
-                Industry International Delegates
+              <Radio value="International Delegate (Industry)">
+                International Delegate {"(Industry)"}
               </Radio>
-              <Radio value="International Students">
-                International Students
+              <Radio value="International Student">International Student</Radio>
+              <Radio value="Academic Delegate (National)">
+                Academic Delegate {"(National)"}
               </Radio>
-              <Radio value="Academic Delegates (National)">
-                Academic Delegates {"(National)"}
+              <Radio value="Industry Delegate (National)">
+                Industry Delegate {"(National)"}
               </Radio>
-              <Radio value="Students (National)">Students {"(National)"}</Radio>
-              <Radio value="Industry Delegates (National)">
-                Industry Delegates {"(National)"}
-              </Radio>
+              <Radio value="Student (National)">Student {"(National)"}</Radio>
             </VStack>
           </RadioGroup>
         </FormControl>
@@ -435,6 +474,7 @@ const Form3 = (props) => {
             <Text>Last Name : {props.formData.glastName}</Text>
             <Text>Email : {props.formData.gemail}</Text>
             <Text>Type : {props.formData.gtype}</Text>
+            <Text>Gender : {props.formData.ggender}</Text>
             <Button
               colorScheme={"red"}
               mt="2%"
@@ -447,7 +487,15 @@ const Form3 = (props) => {
                     gfirstName: "",
                     glastName: "",
                     gemail: "",
-                    gtype: "National"
+                    gtype: "National",
+                    ggender: "male",
+                    gsame: "yes",
+                    gaddress: "",
+                    gcountry: "",
+                    gcity: "",
+                    gstate: "",
+                    gzip: "",
+                    gphone: "",
                   };
                   localStorage.setItem("formData", JSON.stringify(fd));
                   return fd;
@@ -530,16 +578,261 @@ const Form3 = (props) => {
                     }}
                   >
                     <VStack spacing="24px" align="left">
-                      <Radio value="National">
-                        National
-                      </Radio>
+                      <Radio value="National">National{"(₹2,000)"}</Radio>
                       <Radio value="International">
-                        International
+                        International{"($100)"}
                       </Radio>
                     </VStack>
                   </RadioGroup>
                 </FormControl>
               </FormControl>
+
+              <FormControl mt="2%" isRequired>
+                <Text>Gender : </Text>
+                <RadioGroup
+                  onChange={(e) => {
+                    props.setFormData((formData) => {
+                      const fd = { ...formData, ggender: e };
+                      localStorage.setItem("formData", JSON.stringify(fd));
+                      return fd;
+                    });
+                  }}
+                  value={props.formData.ggender}
+                >
+                  <Stack direction="row">
+                    <Radio value="male">Male</Radio>
+                    <Radio value="female">Female</Radio>
+                    <Radio value="other">Other</Radio>
+                  </Stack>
+                </RadioGroup>
+              </FormControl>
+
+              <FormControl mt="2%">
+                <FormLabel>Location Details</FormLabel>
+                <Checkbox
+                  isChecked={props.formData.gsame === "yes"}
+                  onChange={(e) => {
+                    props.setFormData((formData) => {
+                      const fd = {
+                        ...formData,
+                        gsame: e.target.checked ? "yes" : "no",
+                      };
+                      localStorage.setItem("formData", JSON.stringify(fd));
+                      return fd;
+                    });
+                  }}
+                >
+                  Same as delegate?
+                </Checkbox>
+              </FormControl>
+
+              {props.formData.gsame === "yes" ? (
+                <></>
+              ) : (
+                <>
+                  <FormControl as={GridItem} colSpan={6} isRequired>
+                    <FormLabel
+                      htmlFor="address"
+                      fontSize="sm"
+                      fontWeight="md"
+                      color="gray.700"
+                      _dark={{
+                        color: "gray.50",
+                      }}
+                      mt="2%"
+                    >
+                      Address
+                    </FormLabel>
+                    <Input
+                      type="text"
+                      name="address"
+                      id="address"
+                      autoComplete="address"
+                      focusBorderColor="brand.400"
+                      shadow="sm"
+                      size="sm"
+                      w="full"
+                      rounded="md"
+                      value={props.formData.gaddress}
+                      onChange={props.getHandler("gaddress")}
+                    />
+                  </FormControl>
+
+                  <FormControl as={GridItem} colSpan={6} isRequired>
+                    <FormLabel
+                      htmlFor="country"
+                      fontSize="sm"
+                      fontWeight="md"
+                      color="gray.700"
+                      _dark={{
+                        color: "gray.50",
+                      }}
+                      mt="2%"
+                    >
+                      Country/Region
+                    </FormLabel>
+                    <Select
+                      type="text"
+                      name="country"
+                      id="country"
+                      autoComplete="country"
+                      focusBorderColor="brand.400"
+                      shadow="sm"
+                      size="sm"
+                      w="full"
+                      rounded="md"
+                      value={props.formData.gcountry}
+                      onChange={props.getHandler("gcountry")}
+                    >
+                      {CountryData.map((option, index) => {
+                        return (
+                          <option key={index} value={option.value}>
+                            {option.displayValue}
+                          </option>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
+
+                  <FormControl
+                    as={GridItem}
+                    colSpan={[6, 6, null, 2]}
+                    isRequired
+                  >
+                    <FormLabel
+                      htmlFor="city"
+                      fontSize="sm"
+                      fontWeight="md"
+                      color="gray.700"
+                      _dark={{
+                        color: "gray.50",
+                      }}
+                      mt="2%"
+                    >
+                      City
+                    </FormLabel>
+                    <Input
+                      type="text"
+                      name="city"
+                      id="city"
+                      autoComplete="city"
+                      focusBorderColor="brand.400"
+                      shadow="sm"
+                      size="sm"
+                      w="full"
+                      rounded="md"
+                      value={props.formData.gcity}
+                      onChange={props.getHandler("gcity")}
+                    />
+                  </FormControl>
+
+                  <FormControl
+                    as={GridItem}
+                    colSpan={[6, 3, null, 2]}
+                    isRequired
+                  >
+                    <FormLabel
+                      htmlFor="state"
+                      fontSize="sm"
+                      fontWeight="md"
+                      color="gray.700"
+                      _dark={{
+                        color: "gray.50",
+                      }}
+                      mt="2%"
+                    >
+                      State / Province
+                    </FormLabel>
+                    <Select
+                      type="text"
+                      name="state"
+                      id="state"
+                      autoComplete="state"
+                      focusBorderColor="brand.400"
+                      shadow="sm"
+                      size="sm"
+                      w="full"
+                      rounded="md"
+                      value={props.formData.gstate}
+                      onChange={props.getHandler("gstate")}
+                    >
+                      {getState(props.formData.gcountry).map(
+                        (option, index) => {
+                          return (
+                            <option key={index} value={option.value}>
+                              {option.displayValue}
+                            </option>
+                          );
+                        }
+                      )}
+                    </Select>
+                  </FormControl>
+
+                  <FormControl
+                    as={GridItem}
+                    colSpan={[6, 3, null, 2]}
+                    isRequired
+                  >
+                    <FormLabel
+                      htmlFor="postal_code"
+                      fontSize="sm"
+                      fontWeight="md"
+                      color="gray.700"
+                      _dark={{
+                        color: "gray.50",
+                      }}
+                      mt="2%"
+                    >
+                      ZIP / Postal
+                    </FormLabel>
+                    <Input
+                      type="text"
+                      name="postal_code"
+                      id="postal_code"
+                      autoComplete="postal-code"
+                      focusBorderColor="brand.400"
+                      shadow="sm"
+                      size="sm"
+                      w="full"
+                      rounded="md"
+                      value={props.formData.gzip}
+                      onChange={props.getHandler("gzip")}
+                    />
+                  </FormControl>
+
+                  <FormControl
+                    as={GridItem}
+                    colSpan={[6, 3, null, 2]}
+                    isRequired
+                  >
+                    <FormLabel
+                      htmlFor="work_phone"
+                      fontSize="sm"
+                      fontWeight="md"
+                      color="gray.700"
+                      _dark={{
+                        color: "gray.50",
+                      }}
+                      mt="2%"
+                    >
+                      Work Phone
+                    </FormLabel>
+                    <Input
+                      type="number"
+                      name="work_phone"
+                      id="work_phone"
+                      autoComplete="work_phone"
+                      focusBorderColor="brand.400"
+                      shadow="sm"
+                      size="sm"
+                      w="full"
+                      rounded="md"
+                      value={props.formData.gphone}
+                      onChange={props.getHandler("gphone")}
+                    />
+                  </FormControl>
+                </>
+              )}
             </Flex>
           </ModalBody>
 
@@ -595,11 +888,28 @@ const Form3 = (props) => {
 // };
 
 const Form4 = (props) => {
+  const costs = {
+    "International Delegate (Academic)": "$450",
+    "International Delegate (Industry)": "$450",
+    "International Student": "$200",
+    "Academic Delegate (National)": "₹7,000",
+    "Industry Delegate (National)": "₹10,000",
+    "Student (National)": "₹3,500",
+    National: "₹2,000",
+    International: "$100",
+  };
   return (
     <>
       <Heading w="100%" textAlign={"center"} fontWeight="normal">
         Registration Summary
       </Heading>
+      <Text mt={"2%"}>
+        Amount Due :{" "}
+        {props.formData.invitedSpeaker === "yes"
+          ? "Free"
+          : costs[props.formData.registrationType] +
+            (props.formData.gadd ? " + "+costs[props.formData.gtype] : "")}
+      </Text>
       <Accordion allowToggle mt="2%">
         <AccordionItem>
           <h2>
@@ -614,7 +924,9 @@ const Form4 = (props) => {
             <Text>Prefix : {props.formData.prefix}</Text>
             <Text>First Name : {props.formData.firstName}</Text>
             <Text>Last Name : {props.formData.lastName}</Text>
+            <Text>Gender : {props.formData.gender}</Text>
             <Text>Email Address : {props.formData.email}</Text>
+            <Text>Invited Speaker : {props.formData.invitedSpeaker}</Text>
             <Text>Registration Type : {props.formData.registrationType}</Text>
           </AccordionPanel>
         </AccordionItem>
@@ -656,6 +968,7 @@ const Form4 = (props) => {
                 <Text>Guest Last Name : {props.formData.glastName}</Text>
                 <Text>Guest Email : {props.formData.gemail}</Text>
                 <Text>Guest Type : {props.formData.gtype}</Text>
+                <Text>Guest Gender : {props.formData.ggender}</Text>
               </>
             ) : (
               <Text>No Guest Added</Text>
@@ -675,11 +988,13 @@ export default function Register() {
   var s3 = false;
   const [progress, setProgress] = useState(25.0);
   const [formData, setFormData] = useState({
-    prefix: "Dr.",
+    prefix: "Prof.",
     firstName: "",
     lastName: "",
+    gender: "male",
     email: "",
-    registrationType: "Academic International Delegate",
+    invitedSpeaker: "no",
+    registrationType: "International Delegate (Academic)",
     company: "",
     jobTitle: "",
     address: "",
@@ -693,6 +1008,14 @@ export default function Register() {
     glastName: "",
     gemail: "",
     gtype: "National",
+    ggender: "male",
+    gsame: "yes",
+    gaddress: "",
+    gcountry: "",
+    gcity: "",
+    gstate: "",
+    gzip: "",
+    gphone: "",
   });
 
   const [submitting, steSubmitting] = useState(false);
@@ -728,6 +1051,7 @@ export default function Register() {
         p={6}
         m="20px auto"
         as="form"
+        minH={{ base: "75vh", md: "60vh" }}
       >
         <Progress
           hasStripe
@@ -811,7 +1135,8 @@ export default function Register() {
                         if (res.status === 200) {
                           toast({
                             title: "Account created.",
-                            description: "Your Data has been submitted successfully",
+                            description:
+                              "Your Data has been submitted successfully",
                             status: "success",
                             duration: 3000,
                             isClosable: true,
@@ -839,7 +1164,13 @@ export default function Register() {
                       });
                   } else {
                     var errprompt = Object.values(err).join();
-                    window.alert(errprompt);
+                    toast({
+                      title: "Validation Error",
+                      description: errprompt,
+                      status: "error",
+                      duration: 3000,
+                      isClosable: true,
+                    });
                   }
                 }}
               >

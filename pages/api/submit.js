@@ -5,7 +5,9 @@ const FormSchema = new mongoose.Schema({
     prefix : String,
     firstName : String,
     lastName : String,
+    gender: String,
     email : String,
+    invitedSpeaker: String,
     registrationType: String,
     company: String,
     jobTitle: String,
@@ -20,6 +22,14 @@ const FormSchema = new mongoose.Schema({
     glastName: String,
     gemail: String,
     gtype : String,
+    ggender: String,
+    gsame : String,
+    gaddress : String,
+    gcountry: String,
+    gcity: String,
+    gstate: String,
+    gzip: String,
+    gphone: String,
 });
 
 const Form = mongoose.model('FormData',FormSchema);

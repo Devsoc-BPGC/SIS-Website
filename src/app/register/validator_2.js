@@ -1,7 +1,8 @@
 function validatePhoneNumber(input_str) {
-    var re = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+    return true;
+    // var re = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
   
-    return re.test(input_str);
+    // return re.test(input_str);
 }
 const validate_2 = values => {
     const errors = {}
