@@ -1,0 +1,23 @@
+    {
+        "items": {
+          "bootstrap": [
+            {
+              "id": 1,
+              "title": "BITS Goa",
+              "imageUrl": "/Bdome.png"
+            },
+            {
+              "id": 2,
+              "title": "ISSER Pune",
+              "imageUrl": "/iiser-pune.png"
+            },
+            {
+              "id": 3,
+              "title": "ICT",
+              "imageUrl": "/ict.png"
+            }
+          ]
+        }
+      }
+     
+  
