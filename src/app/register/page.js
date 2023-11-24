@@ -122,9 +122,9 @@ const Form1 = (props) => {
           value={props.formData.gender}
         >
           <Stack direction="row">
-            <Radio value="male">Male</Radio>
-            <Radio value="female">Female</Radio>
-            <Radio value="other">Other</Radio>
+            <Radio value="Male">Male</Radio>
+            <Radio value="Female">Female</Radio>
+            <Radio value="Other">Other</Radio>
           </Stack>
         </RadioGroup>
       </FormControl>
@@ -143,12 +143,12 @@ const Form1 = (props) => {
       <FormControl mt="2%">
         <FormLabel>Invited Speakers</FormLabel>
         <Checkbox
-          isChecked={props.formData.invitedSpeaker === "yes"}
+          isChecked={props.formData.invitedSpeaker === "Yes"}
           onChange={(e) => {
             props.setFormData((formData) => {
               const fd = {
                 ...formData,
-                invitedSpeaker: e.target.checked ? "yes" : "no",
+                invitedSpeaker: e.target.checked ? "Yes" : "No",
               };
               localStorage.setItem("formData", JSON.stringify(fd));
               return fd;
@@ -488,8 +488,8 @@ const Form3 = (props) => {
                     glastName: "",
                     gemail: "",
                     gtype: "National",
-                    ggender: "male",
-                    gsame: "yes",
+                    ggender: "Male",
+                    gsame: "Yes",
                     gaddress: "",
                     gcountry: "",
                     gcity: "",
@@ -600,9 +600,9 @@ const Form3 = (props) => {
                   value={props.formData.ggender}
                 >
                   <Stack direction="row">
-                    <Radio value="male">Male</Radio>
-                    <Radio value="female">Female</Radio>
-                    <Radio value="other">Other</Radio>
+                    <Radio value="Male">Male</Radio>
+                    <Radio value="Female">Female</Radio>
+                    <Radio value="Other">Other</Radio>
                   </Stack>
                 </RadioGroup>
               </FormControl>
@@ -610,12 +610,12 @@ const Form3 = (props) => {
               <FormControl mt="2%">
                 <FormLabel>Location Details</FormLabel>
                 <Checkbox
-                  isChecked={props.formData.gsame === "yes"}
+                  isChecked={props.formData.gsame === "Yes"}
                   onChange={(e) => {
                     props.setFormData((formData) => {
                       const fd = {
                         ...formData,
-                        gsame: e.target.checked ? "yes" : "no",
+                        gsame: e.target.checked ? "Yes" : "No",
                       };
                       localStorage.setItem("formData", JSON.stringify(fd));
                       return fd;
@@ -626,7 +626,7 @@ const Form3 = (props) => {
                 </Checkbox>
               </FormControl>
 
-              {props.formData.gsame === "yes" ? (
+              {props.formData.gsame === "Yes" ? (
                 <></>
               ) : (
                 <>
@@ -905,7 +905,7 @@ const Form4 = (props) => {
       </Heading>
       <Text mt={"2%"}>
         Amount Due :{" "}
-        {props.formData.invitedSpeaker === "yes"
+        {props.formData.invitedSpeaker === "Yes"
           ? "Free"
           : costs[props.formData.registrationType] +
             (props.formData.gadd ? " + "+costs[props.formData.gtype] : "")}
@@ -991,9 +991,9 @@ export default function Register() {
     prefix: "Prof.",
     firstName: "",
     lastName: "",
-    gender: "male",
+    gender: "Male",
     email: "",
-    invitedSpeaker: "no",
+    invitedSpeaker: "No",
     registrationType: "International Delegate (Academic)",
     company: "",
     jobTitle: "",
@@ -1008,8 +1008,8 @@ export default function Register() {
     glastName: "",
     gemail: "",
     gtype: "National",
-    ggender: "male",
-    gsame: "yes",
+    ggender: "Male",
+    gsame: "Yes",
     gaddress: "",
     gcountry: "",
     gcity: "",

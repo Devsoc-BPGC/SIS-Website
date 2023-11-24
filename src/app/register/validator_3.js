@@ -18,7 +18,7 @@ const validate_3 = (values) => {
   } else if (!validateEmail(values.gemail)) {
     errors.gemail = "This is not a valid Email.\n";
   }
-  if (values.gsame === "no") {
+  if (values.gsame === "No") {
     if (!values.gaddress) {
       errors.address = "Address is required.\n";
     }
