@@ -13,11 +13,11 @@ function Marker() {
     >
       <marquee scrollamount="7">
         Early bird registration to commence from{" "}
-        <Text color="white" display={"inline"}>
+        <Text color="#211D70" display={"inline"} fontWeight={'bold'}>
           November 27,2023.
         </Text>
         &nbsp;&nbsp;&nbsp;Abstract submission to start from{" "}
-        <Text color={"white"} display={"inline"}>
+        <Text color={"#211D70"} display={"inline"} fontWeight={'bold'}>
           December 15, 2023.
         </Text>
       </marquee>
