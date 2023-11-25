@@ -49,7 +49,9 @@ import {
   Checkbox,
 } from "@chakra-ui/react";
 
-import Navbar from "../HomePage/navbar";
+// useRouter
+import { useRouter } from 'next/navigation'
+ 
 const CountryData = Country.getAllCountries().map((country) => ({
   value: country.isoCode,
   displayValue: `${country.name} - ${country.isoCode}`,
@@ -67,8 +69,8 @@ const registrationType = {
   "International Student": 1,
   "Academic Delegate (National)": 0,
   "Industry Delegate (National)": 0,
-  "Student (National)": 0
-}
+  "Student (National)": 0,
+};
 const costs = {
   "Academic Delegate (International)": "$450",
   "Industry Delegate (International)": "$450",
@@ -915,7 +917,7 @@ const Form4 = (props) => {
         {props.formData.invitedSpeaker === "Yes"
           ? "Free"
           : costs[props.formData.registrationType] +
-          (props.formData.gadd ? " + " + costs[props.formData.gtype] : "")}
+            (props.formData.gadd ? " + " + costs[props.formData.gtype] : "")}
       </Text>
       <Accordion allowToggle mt="2%">
         <AccordionItem>
@@ -988,7 +990,7 @@ const Form4 = (props) => {
 };
 
 export default function Register() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
   const [step, setStep] = useState(1);
   var s1 = false;
@@ -1027,6 +1029,8 @@ export default function Register() {
   });
 
   const [submitting, steSubmitting] = useState(false);
+
+  const router = useRouter()
 
   useEffect(() => {
     if (localStorage.getItem("formData") !== null) {
@@ -1150,17 +1154,14 @@ export default function Register() {
                             isClosable: true,
                           });
                           steSubmitting(false);
-                          try {
-                            if (registrationType[formData.registrationType] === 1) {
-                              console.log("International")
-                              onOpen()
-                            }else{
-                              console.log("National")
-                              window.location='/payments'
-                            }
-                          } catch (err) {
-                            console.log(err)
-                            console.log("Error")
+                          if (
+                            registrationType[formData.registrationType] === 1
+                          ) {
+                            console.log("International");
+                            onOpen();
+                          } else {
+                            console.log("National");
+                            router.push('/payments', { scroll: false })
                           }
                         } else {
                           toast({
@@ -1205,9 +1206,11 @@ export default function Register() {
             <ModalHeader>International Payment</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-              <b>International Delegate have to pay to the given account</b><br></br>
+              <b>International Delegate have to pay to the given account</b>
+              <br></br>
               Name - BITS Pilani K K Birla Goa Campus<br></br>
-              Amount - {costs[formData.registrationType]}<br></br>
+              Amount - {costs[formData.registrationType]}
+              <br></br>
               Bank - State Bank of India<br></br>
               Branch - BITS Pilani Goa Centre<br></br>
               Account no. 30803684122<br></br>
@@ -1216,7 +1219,7 @@ export default function Register() {
             </ModalBody>
 
             <ModalFooter>
-              <Button colorScheme='blue' mr={3} onClick={onClose}>
+              <Button colorScheme="blue" mr={3} onClick={onClose}>
                 Close
               </Button>
             </ModalFooter>
