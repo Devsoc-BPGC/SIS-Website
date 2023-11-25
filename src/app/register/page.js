@@ -49,7 +49,9 @@ import {
   Checkbox,
 } from "@chakra-ui/react";
 
-import Navbar from "../HomePage/navbar";
+// useRouter
+import { useRouter } from "next/navigation";
+
 const CountryData = Country.getAllCountries().map((country) => ({
   value: country.isoCode,
   displayValue: `${country.name} - ${country.isoCode}`,
@@ -61,7 +63,24 @@ function getState(countryCode) {
   }));
   return StateData;
 }
-
+const registrationType = {
+  "Academic Delegate (International)": 1,
+  "Industry Delegate (International)": 1,
+  "International Student": 1,
+  "Academic Delegate (National)": 0,
+  "Industry Delegate (National)": 0,
+  "Student (National)": 0,
+};
+const costs = {
+  "Academic Delegate (International)": "$450",
+  "Industry Delegate (International)": "$450",
+  "International Student": "$200",
+  "Academic Delegate (National)": "₹7,000",
+  "Industry Delegate (National)": "₹10,000",
+  "Student (National)": "₹3,500",
+  National: "₹2,000",
+  International: "$100",
+};
 const Form1 = (props) => {
   return (
     <>
@@ -140,30 +159,30 @@ const Form1 = (props) => {
         />
       </FormControl>
 
-      <FormControl mt="2%">
-        <FormLabel>Invited Speakers</FormLabel>
-        <Checkbox
-          isChecked={props.formData.invitedSpeaker === "Yes"}
+      <FormControl mt="2%" isRequired>
+        <Text>Are you an invited speaker : </Text>
+        <RadioGroup
           onChange={(e) => {
             props.setFormData((formData) => {
-              const fd = {
-                ...formData,
-                invitedSpeaker: e.target.checked ? "Yes" : "No",
-              };
+              const fd = { ...formData, invitedSpeaker: e };
               localStorage.setItem("formData", JSON.stringify(fd));
               return fd;
             });
           }}
+          value={props.formData.invitedSpeaker}
         >
-          Are you an invited speaker?
-        </Checkbox>
+          <Stack direction="row">
+            <Radio value="Yes">Yes</Radio>
+            <Radio value="No">No</Radio>
+          </Stack>
+        </RadioGroup>
       </FormControl>
 
       <FormControl mt="2%" isRequired>
         <FormControl as="fieldset" isRequired>
           <FormLabel as="legend">Registration type</FormLabel>
           <RadioGroup
-            defaultValue="International Delegate (Academic)"
+            defaultValue="Academic Delegate (International)"
             value={props.formData.registrationType}
             onChange={(e) => {
               props.setFormData((formData) => {
@@ -174,11 +193,11 @@ const Form1 = (props) => {
             }}
           >
             <VStack spacing="24px" align="left">
-              <Radio value="International Delegate (Academic)">
-                International Delegate {"(Academic)"}
+              <Radio value="Academic Delegate (International)">
+                Academic Delegate {"(International)"}
               </Radio>
-              <Radio value="International Delegate (Industry)">
-                International Delegate {"(Industry)"}
+              <Radio value="Industry Delegate (International)">
+                Industry Delegate {"(International)"}
               </Radio>
               <Radio value="International Student">International Student</Radio>
               <Radio value="Academic Delegate (National)">
@@ -888,16 +907,6 @@ const Form3 = (props) => {
 // };
 
 const Form4 = (props) => {
-  const costs = {
-    "International Delegate (Academic)": "$450",
-    "International Delegate (Industry)": "$450",
-    "International Student": "$200",
-    "Academic Delegate (National)": "₹7,000",
-    "Industry Delegate (National)": "₹10,000",
-    "Student (National)": "₹3,500",
-    National: "₹2,000",
-    International: "$100",
-  };
   return (
     <>
       <Heading w="100%" textAlign={"center"} fontWeight="normal">
@@ -908,7 +917,7 @@ const Form4 = (props) => {
         {props.formData.invitedSpeaker === "Yes"
           ? "Free"
           : costs[props.formData.registrationType] +
-            (props.formData.gadd ? " + "+costs[props.formData.gtype] : "")}
+            (props.formData.gadd ? " + " + costs[props.formData.gtype] : "")}
       </Text>
       <Accordion allowToggle mt="2%">
         <AccordionItem>
@@ -981,6 +990,7 @@ const Form4 = (props) => {
 };
 
 export default function Register() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
   const [step, setStep] = useState(1);
   var s1 = false;
@@ -993,8 +1003,8 @@ export default function Register() {
     lastName: "",
     gender: "Male",
     email: "",
-    invitedSpeaker: "No",
-    registrationType: "International Delegate (Academic)",
+    invitedSpeaker: "",
+    registrationType: "Academic Delegate (International)",
     company: "",
     jobTitle: "",
     address: "",
@@ -1019,12 +1029,20 @@ export default function Register() {
   });
 
   const [submitting, steSubmitting] = useState(false);
+  const [complete, setcomplete] = useState("no");
+
+  const router = useRouter();
 
   useEffect(() => {
     if (localStorage.getItem("formData") !== null) {
       setFormData(JSON.parse(localStorage.getItem("formData")));
     } else {
       localStorage.setItem("formData", JSON.stringify(formData));
+    }
+    if (localStorage.getItem("complete") !== null) {
+      setcomplete(localStorage.getItem("complete"));
+    } else {
+      localStorage.setItem("complete", "no");
     }
   }, []);
 
@@ -1041,7 +1059,67 @@ export default function Register() {
   s1 = Object.keys(validate_1(formData)).length == 0;
   s2 = Object.keys(validate_2(formData)).length == 0;
   s3 = Object.keys(validate_3(formData)).length == 0;
-  return (
+  return complete === "yes" ? (
+    <Flex direction={"column"} alignItems="center" justifyContent={"center"} minH="80vh">
+      <Heading>You have already submitted an entry</Heading>
+      <Button
+        onClick={() => {
+          localStorage.setItem("complete", "no");
+          setcomplete("no");
+        }}
+        mt="2%"
+        colorScheme={'orange'}
+      >
+        {" "}
+        Click here to fill another form
+      </Button>
+      <Button
+        onClick={() => {
+          router.push("/payments");
+        }}
+        mt="2%"
+        colorScheme={'orange'}
+      >
+        Click here to go to the payment portal
+        {" (only for national participants)"}
+      </Button>
+      <Button
+        onClick={() => {
+          onOpen();
+        }}
+        mt="2%"
+        colorScheme={'orange'}
+      >
+        Click here for payment instructions
+        {" (only for international participants)"}
+      </Button>
+      <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>International Payment</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <b>International Delegate have to pay to the given account</b>
+              <br></br>
+              Name - BITS Pilani K K Birla Goa Campus<br></br>
+              Amount - {costs[formData.registrationType]}
+              <br></br>
+              Bank - State Bank of India<br></br>
+              Branch - BITS Pilani Goa Centre<br></br>
+              Account no. 30803684122<br></br>
+              IFSC code - SBIN0010720<br></br>
+              SWIFT Code - SBININBB229<br></br>
+            </ModalBody>
+
+            <ModalFooter>
+              <Button colorScheme="blue" mr={3} onClick={onClose}>
+                Close
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+    </Flex>
+  ) : (
     <ChakraProvider>
       <Box
         borderWidth="1px"
@@ -1142,6 +1220,17 @@ export default function Register() {
                             isClosable: true,
                           });
                           steSubmitting(false);
+                          localStorage.setItem("complete", "yes");
+                          setcomplete("yes");
+                          if (
+                            registrationType[formData.registrationType] === 1
+                          ) {
+                            console.log("International");
+                            onOpen();
+                          } else {
+                            console.log("National");
+                            router.push("/payments", { scroll: false });
+                          }
                         } else {
                           toast({
                             title: "Request Failed",
@@ -1179,6 +1268,31 @@ export default function Register() {
             ) : null}
           </Flex>
         </ButtonGroup>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>International Payment</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <b>International Delegate have to pay to the given account</b>
+              <br></br>
+              Name - BITS Pilani K K Birla Goa Campus<br></br>
+              Amount - {costs[formData.registrationType]}
+              <br></br>
+              Bank - State Bank of India<br></br>
+              Branch - BITS Pilani Goa Centre<br></br>
+              Account no. 30803684122<br></br>
+              IFSC code - SBIN0010720<br></br>
+              SWIFT Code - SBININBB229<br></br>
+            </ModalBody>
+
+            <ModalFooter>
+              <Button colorScheme="blue" mr={3} onClick={onClose}>
+                Close
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       </Box>
     </ChakraProvider>
   );
