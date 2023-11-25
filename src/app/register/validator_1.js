@@ -31,6 +31,8 @@ const validateEmail = (email) => {
         errors.email = 'Email is Required.\n';
     }else if(!validateEmail(values.email)){
         errors.email = 'This is not a valid Email.\n';
+    } else if(values.invitedSpeaker===""){
+      errors.invitedSpeaker = "choose if you are a invited speaker or not";
     }
     return errors
   }
