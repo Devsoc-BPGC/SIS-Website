@@ -61,7 +61,24 @@ function getState(countryCode) {
   }));
   return StateData;
 }
-
+const registrationType = {
+  "Academic Delegate (International)": 1,
+  "Industry Delegate (International)": 1,
+  "International Student": 1,
+  "Academic Delegate (National)": 0,
+  "Industry Delegate (National)": 0,
+  "Student (National)": 0
+}
+const costs = {
+  "Academic Delegate (International)": "$450",
+  "Industry Delegate (International)": "$450",
+  "International Student": "$200",
+  "Academic Delegate (National)": "₹7,000",
+  "Industry Delegate (National)": "₹10,000",
+  "Student (National)": "₹3,500",
+  National: "₹2,000",
+  International: "$100",
+};
 const Form1 = (props) => {
   return (
     <>
@@ -163,7 +180,7 @@ const Form1 = (props) => {
         <FormControl as="fieldset" isRequired>
           <FormLabel as="legend">Registration type</FormLabel>
           <RadioGroup
-            defaultValue="International Delegate (Academic)"
+            defaultValue="Academic Delegate (International)"
             value={props.formData.registrationType}
             onChange={(e) => {
               props.setFormData((formData) => {
@@ -174,11 +191,11 @@ const Form1 = (props) => {
             }}
           >
             <VStack spacing="24px" align="left">
-              <Radio value="International Delegate (Academic)">
-                International Delegate {"(Academic)"}
+              <Radio value="Academic Delegate (International)">
+                Academic Delegate {"(International)"}
               </Radio>
-              <Radio value="International Delegate (Industry)">
-                International Delegate {"(Industry)"}
+              <Radio value="Industry Delegate (International)">
+                Industry Delegate {"(International)"}
               </Radio>
               <Radio value="International Student">International Student</Radio>
               <Radio value="Academic Delegate (National)">
@@ -888,16 +905,6 @@ const Form3 = (props) => {
 // };
 
 const Form4 = (props) => {
-  const costs = {
-    "International Delegate (Academic)": "$450",
-    "International Delegate (Industry)": "$450",
-    "International Student": "$200",
-    "Academic Delegate (National)": "₹7,000",
-    "Industry Delegate (National)": "₹10,000",
-    "Student (National)": "₹3,500",
-    National: "₹2,000",
-    International: "$100",
-  };
   return (
     <>
       <Heading w="100%" textAlign={"center"} fontWeight="normal">
@@ -908,7 +915,7 @@ const Form4 = (props) => {
         {props.formData.invitedSpeaker === "Yes"
           ? "Free"
           : costs[props.formData.registrationType] +
-            (props.formData.gadd ? " + "+costs[props.formData.gtype] : "")}
+          (props.formData.gadd ? " + " + costs[props.formData.gtype] : "")}
       </Text>
       <Accordion allowToggle mt="2%">
         <AccordionItem>
@@ -981,6 +988,7 @@ const Form4 = (props) => {
 };
 
 export default function Register() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast();
   const [step, setStep] = useState(1);
   var s1 = false;
@@ -994,7 +1002,7 @@ export default function Register() {
     gender: "Male",
     email: "",
     invitedSpeaker: "No",
-    registrationType: "International Delegate (Academic)",
+    registrationType: "Academic Delegate (International)",
     company: "",
     jobTitle: "",
     address: "",
@@ -1142,6 +1150,18 @@ export default function Register() {
                             isClosable: true,
                           });
                           steSubmitting(false);
+                          try {
+                            if (registrationType[formData.registrationType] === 1) {
+                              console.log("International")
+                              onOpen()
+                            }else{
+                              console.log("National")
+                              window.location='/payments'
+                            }
+                          } catch (err) {
+                            console.log(err)
+                            console.log("Error")
+                          }
                         } else {
                           toast({
                             title: "Request Failed",
@@ -1179,6 +1199,29 @@ export default function Register() {
             ) : null}
           </Flex>
         </ButtonGroup>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>International Payment</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <b>International Delegate have to pay to the given account</b><br></br>
+              Name - BITS Pilani K K Birla Goa Campus<br></br>
+              Amount - {costs[formData.registrationType]}<br></br>
+              Bank - State Bank of India<br></br>
+              Branch - BITS Pilani Goa Centre<br></br>
+              Account no. 30803684122<br></br>
+              IFSC code - SBIN0010720<br></br>
+              SWIFT Code - SBININBB229<br></br>
+            </ModalBody>
+
+            <ModalFooter>
+              <Button colorScheme='blue' mr={3} onClick={onClose}>
+                Close
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       </Box>
     </ChakraProvider>
   );
