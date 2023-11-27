@@ -302,10 +302,6 @@ const NAV_ITEMS = [
         href: '/sponsors',
       },
       {
-        label: 'Venue',
-        href: '/aboutlocation',
-      },
-      {
         label: 'Accommodation information',
         href: '/accoinfo',
       },

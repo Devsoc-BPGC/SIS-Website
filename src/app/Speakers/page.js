@@ -8,6 +8,7 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import Image from "next/image";
+import Puc from "../HomePage/Puc";
 
 const Speaker = () => {
   return (
@@ -61,8 +62,9 @@ const Speaker = () => {
 export default function Speakers() {
   return (
     <>
-      <Speaker />
-      <Speaker />
+      {/* <Speaker />
+      <Speaker /> */}
+      <Puc />
     </>
   );
 }
