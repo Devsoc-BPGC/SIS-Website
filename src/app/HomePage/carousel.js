@@ -31,11 +31,6 @@ export default function Carousel() {
   const side = useBreakpointValue({ base: "30%", md: "10px" });
 
   // These are the images used in the slide
-  const cards = [
-    <Image src="/Bdome.png" width={500} height={500} alt={"bdome"} />,
-    <Image src="/iiser-pune-full.png" width={500} height={500} alt={"bdome"} />,
-    <Image src="/ict-full.jpg" width={500} height={500} alt={"bdome"} />,
-  ];
 
   return (
     <Box
