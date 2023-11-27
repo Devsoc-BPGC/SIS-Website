@@ -14,7 +14,7 @@ function Marker() {
       <marquee scrollamount="7">
         Early bird registration 
         <Text color="#211D70" display={"inline"} fontWeight={'bold'}>
-        has started.
+        {" "}has started.
         </Text>
         &nbsp;&nbsp;&nbsp;Abstract submission to start from{" "}
         <Text color={"#211D70"} display={"inline"} fontWeight={'bold'}>
