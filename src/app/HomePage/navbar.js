@@ -269,14 +269,12 @@ const NAV_ITEMS = [
     label: 'About',
     children: [
       {
-        label: 'Organizing Institutes',
-        subLabel: 'About BITS,ICT and IISER Pune',
-        href: '/aboutpartners',
+        label: 'Symposium Overview',
+        href: '/symposiumoverview',
       },
       {
-        label: 'Venue',
-        subLabel: 'About Goa and India',
-        href: '/aboutlocation',
+        label: 'Symposium History',
+        href: '/symposiumhistory',
       },
     ],
   },
@@ -284,19 +282,58 @@ const NAV_ITEMS = [
     label: '2024 Conference',
     children: [
       {
-        label: 'Organising Committee',
-        subLabel: 'List of Committee Members',
+        label: 'SIS 2024 Overview',
+        href: '/overview',
+      },
+      {
+        label: 'Venue',
+        href: '/aboutlocation',
+      },
+      {
+        label: 'Fees',
+        href: '/fees',
+      },
+      {
+        label: 'Important Dates',
+        href: '/impdates',
+      },
+      {
+        label: 'Sponsors',
+        href: '/sponsors',
+      },
+      {
+        label: 'Accommodation information',
+        href: '/accoinfo',
+      },
+      {
+        label: 'Abstract Submission',
+        href: '/abssub',
+      },
+      {
+        label: 'Organizing Committee',
         href: '/OrganisingCommittee',
       },
       {
+        label: 'Program Advisory Committee',
+        href: '/pac',
+      },
+      {
+        label: 'International Advisory Committee',
+        href: '/iac',
+      },
+      {
         label: 'Speakers',
-        subLabel: 'List of Speakers for SIS 2024',
         href: '/Speakers',
       },
     ],
   },
   {
     label: 'Contact',
-    href: '#',
+    children: [
+      {
+        label: 'Local Organizing Committee',
+        href: '/contact',
+      }
+    ]
   },
 ]
