@@ -299,7 +299,7 @@ const NAV_ITEMS = [
       },
       {
         label: 'Sponsors',
-        href: '/sponsors',
+        href: '/sponsership_form_sis2024.docx',
       },
       {
         label: 'Accommodation information',
