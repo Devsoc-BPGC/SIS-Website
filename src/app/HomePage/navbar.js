@@ -294,10 +294,6 @@ const NAV_ITEMS = [
         href: '/fees',
       },
       {
-        label: 'Important Dates',
-        href: '/impdates',
-      },
-      {
         label: 'Sponsors',
         href: '/sponsership_form_sis2024.docx',
       },
@@ -314,15 +310,15 @@ const NAV_ITEMS = [
         href: '/OrganisingCommittee',
       },
       {
-        label: 'Program Advisory Committee',
-        href: '/pac',
+        label: 'Scientific Program Committee',
+        href: '/sac',
       },
       {
         label: 'International Advisory Committee',
         href: '/iac',
       },
       {
-        label: 'Speakers',
+        label: 'List of Confirmed Speakers',
         href: '/Speakers',
       },
     ],
