@@ -26,7 +26,7 @@ export default function Footer() {
         <Text size={"2xl"} fontWeight={"bold"} color={'white'}>
           Contact Us
         </Text>
-        <Link>email@gmail.com</Link>
+        <Link href="mailto:sis2024@goa.bits-pilani.ac.in">sis2024@goa.bits-pilani.ac.in</Link>
         <Text>+91 9876543210</Text>
       </Flex>
     </Flex>
