@@ -126,7 +126,7 @@ export default function symposiumhistory() {
           <Tbody>
             {data.map((d) => {
               return (
-                <Tr>
+                <Tr key={d.y}>
                   <Td>{d.y}</Td>
                   <Td>{d.l}</Td>
                 </Tr>
