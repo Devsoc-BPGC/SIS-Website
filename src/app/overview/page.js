@@ -1,15 +1,17 @@
 import React from "react";
-import { Box, ChakraProvider, Flex, ListItem, Text, UnorderedList } from "@chakra-ui/react";
+import {
+  Box,
+  ChakraProvider,
+  Flex,
+  ListItem,
+  Text,
+  UnorderedList,
+} from "@chakra-ui/react";
 
 function page() {
   return (
     <ChakraProvider>
-      <Flex
-        direction={'column'}
-        alignItems="center"
-        minH="80vh"
-        mb={'2%'}
-      >
+      <Flex direction={"column"} alignItems="center" minH="80vh" mb={"2%"}>
         <Text
           fontSize={"4xl"}
           fontWeight="600"
@@ -20,7 +22,14 @@ function page() {
           SIS 2024 Overview
         </Text>
         <Box paddingLeft={"2%"} mt={"2%"}>
-          <Text fontSize={'md'} fontWeight="500">
+          <Text
+            fontSize={"md"}
+            fontWeight="500"
+            style={{
+              textAlign: "justify",
+              textJustify: "inter-word",
+            }}
+          >
             <b style={{ fontSize: "1rem" }}>
               The 24th International Symposium on Surfactants in solution” will
               be held at BITS Pilani K K Birla Goa Campus from June 16-21, 2024.
@@ -52,7 +61,9 @@ function page() {
               </ListItem>
               <ListItem>Polymeric and polymerizable surfactants </ListItem>
               <ListItem>Surfactants in applications </ListItem>
-              <ListItem>Surfactants wetting, spreading and capillary phenomena </ListItem>
+              <ListItem>
+                Surfactants wetting, spreading and capillary phenomena{" "}
+              </ListItem>
               <ListItem>Monolayers and Langmuir-Blodgett films</ListItem>
               <ListItem>
                 Surfactants – experimental methods, techniques and approaches{" "}

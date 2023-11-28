@@ -2,7 +2,7 @@ import { Flex, Text } from "@chakra-ui/react";
 
 export default function OrgComm() {
   return (
-    <Flex direction={'column'} mb={'2%'} minH={'80vh'}>
+    <Flex direction={"column"} mb={"2%"} minH={"80vh"}>
       <Flex p="1.5%" justifyContent={"center"} width={"100%"}>
         <Text
           ml="3rem"
@@ -32,18 +32,24 @@ export default function OrgComm() {
         <Text fontSize={"xl"} fontWeight={"bold"}>
           Organisers:
         </Text>
-        <Text>
+        <Text
+          style={{
+            textAlign: "justify",
+            textJustify: "inter-word",
+          }}
+        >
           1. Dr. Kash Mittal<br></br>General Chairman<br></br>
           <br></br>
           2. Prof. Sunil Bhagwat,{"\t"}Director IISER Pune<br></br>
           Committee Chairman<br></br>
           <br></br>
-          3. Prof. Srinivas Krishnaswamy,{"\t"} BITS Pilani KK Birla Goa Campus<br></br>
+          3. Prof. Srinivas Krishnaswamy,{"\t"} BITS Pilani KK Birla Goa Campus
+          <br></br>
           Local Organising Committee Chairman
           <br></br>
           <br></br>
-          4. Local Organising Committee Chairman 4. Department of Chemical
-          Engineering<br></br>Local Organizing Committee
+          4. Department of Chemical Engineering<br></br>Local Organizing
+          Committee
         </Text>
       </Flex>
     </Flex>

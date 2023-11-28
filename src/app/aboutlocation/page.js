@@ -4,7 +4,7 @@ export default function AboutIndia() {
   var imgHeight = "7rem";
   return (
     <ChakraProvider>
-      <Flex direction={"column"} alignItems="center" mb={'2%'}>
+      <Flex direction={"column"} alignItems="center" mb={"2%"}>
         <Flex direction={"row"} justifyContent="center">
           <Box height={imgHeight}>
             <Image src="/image2.png" height="100%" objectFit="cover"></Image>
@@ -24,14 +24,23 @@ export default function AboutIndia() {
         </Flex>
         <Flex direction="column" alignItems="center">
           <Text
-            fontSize={'4xl'}
-            fontWeight={'bold'}
+            fontSize={"4xl"}
+            fontWeight={"bold"}
             color="#211D70"
             fontFamily="Helvetica"
           >
             About Goa
           </Text>
-          <Text fontSize={"md"} fontWeight="700" paddingLeft={'2%'} paddingRight={'2%'}>
+          <Text
+            fontSize={"md"}
+            fontWeight="700"
+            paddingLeft={"2%"}
+            paddingRight={"2%"}
+            style={{
+              textAlign: "justify",
+              textJustify: "inter-word",
+            }}
+          >
             India, officially known as the Republic of India, is a vast and
             diverse country situated in South Asia. With an expansive landmass
             of around 3.29 million square kilometers, it ranks as the
@@ -64,15 +73,24 @@ export default function AboutIndia() {
           </Text>
         </Flex>
         <Text
-          fontSize={'4xl'}
-          fontWeight={'bold'}
+          fontSize={"4xl"}
+          fontWeight={"bold"}
           color="#211D70"
           fontFamily="Helvetica"
           align={"center"}
         >
           About India
         </Text>
-        <Text fontSize={"md"} fontWeight="700" paddingLeft={'2%'} paddingRight={'2%'}>
+        <Text
+          fontSize={"md"}
+          fontWeight="700"
+          paddingLeft={"2%"}
+          paddingRight={"2%"}
+          style={{
+            textAlign: "justify",
+            textJustify: "inter-word",
+          }}
+        >
           Goa is situated on the west coast of India and is one of the most
           beautiful states of India. It was formerly a Portuguese colony and is
           a unique cultural blend of the east and west. Goa is located adjacent
@@ -92,8 +110,8 @@ export default function AboutIndia() {
           unique opportunity to delve into the captivating beauty of the state.
         </Text>
         <Text
-          fontSize={'4xl'}
-          fontWeight={'bold'}
+          fontSize={"4xl"}
+          fontWeight={"bold"}
           color="#211D70"
           fontFamily="Helvetica"
           align={"center"}
@@ -101,7 +119,16 @@ export default function AboutIndia() {
           Birla Institute of Technology and Science (BITS) Pilani (Hosting
           Institute)
         </Text>
-        <Text fontSize="15px" fontWeight="700" paddingLeft={'2%'} paddingRight={'2%'}>
+        <Text
+          fontSize="15px"
+          fontWeight="700"
+          paddingLeft={"2%"}
+          paddingRight={"2%"}
+          style={{
+            textAlign: "justify",
+            textJustify: "inter-word",
+          }}
+        >
           Birla Institute of Technology & Science, Pilani was declared as an
           Institution Deemed to be a University under section 3 of the UGC Act
           in the year 1964, one of the earliest to be so recognized. BITS Pilani
@@ -132,7 +159,16 @@ export default function AboutIndia() {
         >
           How to reach to BITS Pilani K K Birla Goa Campus, Goa
         </Text>
-        <Text fontSize="15px" fontWeight="700" paddingLeft={'2%'} paddingRight={'2%'}>
+        <Text
+          fontSize="15px"
+          fontWeight="700"
+          paddingLeft={"2%"}
+          paddingRight={"2%"}
+          style={{
+            textAlign: "justify",
+            textJustify: "inter-word",
+          }}
+        >
           Birla Institute of Technology & Science, Pilani was declared as an
           Institution Deemed to be a University under section 3 of the UGC Act
           in the year 1964, one of the earliest to be so recognized. BITS Pilani
@@ -155,7 +191,16 @@ export default function AboutIndia() {
           (IOE).
         </Text>
         <Image src="maps.png"></Image>
-        <Text fontSize="15px" fontWeight="700" paddingLeft={'2%'} paddingRight={'2%'}>
+        <Text
+          fontSize="15px"
+          fontWeight="700"
+          paddingLeft={"2%"}
+          paddingRight={"2%"}
+          style={{
+            textAlign: "justify",
+            textJustify: "inter-word",
+          }}
+        >
           <br></br>
           Note: BITS Pilani K K Birla Goa Campus is on the side of a bypass road
           to NH17B and regular buses will not go via the Campus, so avoid taking

@@ -3,11 +3,17 @@ import { Box, Flex, Text, Heading } from "@chakra-ui/react";
 import Puc from "../HomePage/Puc";
 function Pac() {
   return (
-    <Flex p="1.5%" direction={"column"} mb={'2%'} minH={'80vh'}>
+    <Flex p="1.5%" direction={"column"} mb={"2%"} minH={"80vh"}>
       <Heading mt={"2%"} textAlign={"center"} color="#211D70">
         Scientific Program Committee:
       </Heading>
-      <Text mt={"2%"}>
+      <Text
+        mt={"2%"}
+        style={{
+          textAlign: "justify",
+          textJustify: "inter-word",
+        }}
+      >
         1. Prof. Jayesh Bellare<br></br>
         Professor, Department of Chemical Engineering<br></br>
         IIT Bombay<br></br>

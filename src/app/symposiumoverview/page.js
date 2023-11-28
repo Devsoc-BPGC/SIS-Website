@@ -13,7 +13,10 @@ export default function symposiumoverview() {
       <Heading textAlign={"center"} mt={"2%"} color="#211D70">
         Symposium Overview
       </Heading>
-      <Text mt={"2%"} padding={"0 2%"}>
+      <Text mt={"2%"} padding={"0 2%"} style={{
+            textAlign: "justify",
+            textJustify: "inter-word",
+          }}>
         The “Surfactants in Solution” symposium series was initiated in 1976,
         when it was first held in Albany, New York, under the chairmanship of
         Dr. Kash Mittal. Two more meetings were held in the USA (Knoxville and
