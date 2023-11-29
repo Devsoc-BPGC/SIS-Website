@@ -295,7 +295,7 @@ const NAV_ITEMS = [
       },
       {
         label: 'Sponsors',
-        href: '/sponsership_form_sis2024.docx',
+        href: '/sponsors',
       },
       {
         label: 'Accommodation information',

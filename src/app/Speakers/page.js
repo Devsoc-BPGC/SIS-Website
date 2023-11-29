@@ -1,70 +1,104 @@
 import {
-  Button,
-  Card,
-  CardBody,
   Flex,
-  Stack,
-  Text,
-  IconButton,
+  Box,
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
+  Heading,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import Puc from "../HomePage/Puc";
 
-const Speaker = () => {
-  return (
-    <Card
-      direction={{ base: "column", md: "row" }}
-      m={"1%"}
-      p="1%"
-      alignItems={"center"}
-      justifyContent={"center"}
-      style={{textAlign:'justify',textJustify:'inter-word'}}
-    >
-      <Stack textAlign={"center"} direction={"column"}>
-        <Image src={"/Speaker1.png"} width={200} height={200} alt="ict" />
-        <Text fontSize={"lg"} fontWeight={"semibold"}>
-          Prof. Henry Willis
-        </Text>
-        <Flex justifyContent={"space-evenly"}>
-          <Button colorScheme="linkedin">in</Button>
-          <IconButton
-            icon={
-              <Image
-                src="/link_icon.png"
-                width={20}
-                height={20}
-                alt="link_icon"
-              />
-            }
-          />
-        </Flex>
-      </Stack>
-      <CardBody marginLeft={"2%"}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis
-        vitae et leo duis. Facilisi etiam dignissim diam quis enim lobortis
-        scelerisque fermentum dui. In nisl nisi scelerisque eu ultrices vitae
-        auctor eu augue. Amet mattis vulputate enim nulla. Vitae turpis massa
-        sed elementum tempus egestas sed. Amet massa vitae tortor condimentum
-        lacinia quis vel. In eu mi bibendum neque egestas congue quisque. Vitae
-        purus faucibus ornare suspendisse sed nisi lacus sed. Quis auctor elit
-        sed vulputate mi. Tristique risus nec feugiat in fermentum posuere.
-        Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum
-        tellus. Molestie ac feugiat sed lectus vestibulum mattis ullamcorper.
-        Ultrices dui sapien eget mi proin sed libero. Aliquam id diam maecenas
-        ultricies mi eget. Cras adipiscing enim eu turpis egestas pretium aenean
-        pharetra magna. Dapibus ultrices in iaculis nunc sed augue lacus.
-      </CardBody>
-    </Card>
-  );
-};
-
 export default function Speakers() {
+  const data = [
+    {
+      y: 'Prof. Edgar Acosta',
+      l: "Canada",
+    },
+    {
+      y: 'Prof. Ludmila Boinovich',
+      l: "Russia",
+    },
+    {
+      y: 'Prof. Arun Chattopadhyay',
+      l: "USA",
+    },
+    {
+      y: 'Dr. Krassimir D. Danov',
+      l: "Bulgaria",
+    },
+    {
+      y: 'Dr. Shigeru Deguchi',
+      l: "Japan",
+    },
+    {
+      y: 'Prof. Brian Grady',
+      l: "USA",
+    },
+    {
+      y: 'Prof. Anniina Salonen',
+      l: "France",
+    },
+    {
+      y: 'Prof. Maria Sammalkorpi',
+      l: "Finland",
+    },
+    {
+      y: 'Prof. Subit Kumar Saha',
+      l: "India",
+    },
+    {
+      y: 'Prof. Wuge Briscoe',
+      l: "UK",
+    },
+    {
+      y: 'Prof. Boris A Noskov',
+      l: "Russia",
+    },
+    {
+      y: 'Prof. Amiya Kumar Panda',
+      l: "India",
+    },
+    {
+      y: 'Prof. Kallol K. Ghosh',
+      l: "India",
+    },
+    {
+      y: 'Prof. Jaideep Chatterjee',
+      l: "India",
+    },
+  ];
   return (
-    <>
-      {/* <Speaker />
-      <Speaker /> */}
-      <Puc />
-    </>
+    <Flex direction={"column"} minH={"80vh"} mb={"2%"}>
+      <Heading textAlign={"center"} mt={"2%"} color="#211D70">
+      List of Confirmed Speakers
+      </Heading>
+      <TableContainer padding={"2% 2%"}>
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              <Th>Name of Speaker</Th>
+              <Th>Country</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {data.map((d) => {
+              return (
+                <Tr key={d.y}>
+                  <Td>{d.y}</Td>
+                  <Td>{d.l}</Td>
+                </Tr>
+              );
+            })}
+          </Tbody>
+        </Table>
+      </TableContainer>
+    </Flex>
   );
 }
