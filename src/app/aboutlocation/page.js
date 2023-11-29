@@ -10,7 +10,7 @@ export default function AboutIndia() {
         <Flex direction={"row"} justifyContent="center">
           {images.map((i) => {
             return (
-              <Box height={imgHeight}>
+              <Box height={imgHeight} key={i}>
                 <Image
                   src={`/images/india/img${i}.jpg`}
                   height="100%"
@@ -73,7 +73,7 @@ export default function AboutIndia() {
         <Flex direction={"row"} justifyContent="center" mt={"2%"}>
           {images2.map((i) => {
             return (
-              <Box height={imgHeight}>
+              <Box height={imgHeight} key={i}>
                 <Image
                   src={`/images/goa/img${i}.jpg`}
                   height="100%"
