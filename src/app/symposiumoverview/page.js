@@ -1,10 +1,5 @@
 "use client";
-import {
-  Box,
-  Flex,
-  Heading,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import React from "react";
 import Puc from "../HomePage/Puc";
 export default function symposiumoverview() {
@@ -13,10 +8,14 @@ export default function symposiumoverview() {
       <Heading textAlign={"center"} mt={"2%"} color="#211D70">
         Symposium Overview
       </Heading>
-      <Text mt={"2%"} padding={"0 2%"} style={{
-            textAlign: "justify",
-            textJustify: "inter-word",
-          }}>
+      <Text
+        mt={"2%"}
+        padding={"0 2%"}
+        style={{
+          textAlign: "justify",
+          textJustify: "inter-word",
+        }}
+      >
         The “Surfactants in Solution” symposium series was initiated in 1976,
         when it was first held in Albany, New York, under the chairmanship of
         Dr. Kash Mittal. Two more meetings were held in the USA (Knoxville and

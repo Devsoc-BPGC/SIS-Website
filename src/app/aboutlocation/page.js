@@ -2,25 +2,24 @@
 import { Box, Image, Text, ChakraProvider, Flex } from "@chakra-ui/react";
 export default function AboutIndia() {
   var imgHeight = "7rem";
+  const images = [2, 3, 4, 5, 6, 7, 8, 9];
+  const images2 = [1, 2, 3, 4, 5, 6, 7];
   return (
     <ChakraProvider>
       <Flex direction={"column"} alignItems="center" mb={"2%"}>
         <Flex direction={"row"} justifyContent="center">
-          <Box height={imgHeight}>
-            <Image src="/image2.png" height="100%" objectFit="cover"></Image>
-          </Box>
-          <Box height={imgHeight}>
-            <Image src="/image3.png" height="100%" objectFit="cover"></Image>
-          </Box>
-          <Box height={imgHeight}>
-            <Image src="/image5.png" height="100%" objectFit="cover"></Image>
-          </Box>
-          <Box height={imgHeight}>
-            <Image src="/image6.png" height="100%" objectFit="cover"></Image>
-          </Box>
-          <Box height={imgHeight}>
-            <Image src="/image7.png" height="100%" objectFit="cover"></Image>
-          </Box>
+          {images.map((i) => {
+            return (
+              <Box height={imgHeight}>
+                <Image
+                  src={`/images/india/img${i}.jpg`}
+                  height="100%"
+                  objectFit="cover"
+                  key={i}
+                ></Image>
+              </Box>
+            );
+          })}
         </Flex>
         <Flex direction="column" alignItems="center">
           <Text
@@ -29,11 +28,10 @@ export default function AboutIndia() {
             color="#211D70"
             fontFamily="Helvetica"
           >
-            About Goa
+            About India
           </Text>
           <Text
             fontSize={"md"}
-            fontWeight="700"
             paddingLeft={"2%"}
             paddingRight={"2%"}
             style={{
@@ -72,6 +70,20 @@ export default function AboutIndia() {
             wonders like the Himalayan mountain range and Kerala's backwaters.
           </Text>
         </Flex>
+        <Flex direction={"row"} justifyContent="center" mt={"2%"}>
+          {images2.map((i) => {
+            return (
+              <Box height={imgHeight}>
+                <Image
+                  src={`/images/goa/img${i}.jpg`}
+                  height="100%"
+                  objectFit="cover"
+                  key={i}
+                ></Image>
+              </Box>
+            );
+          })}
+        </Flex>
         <Text
           fontSize={"4xl"}
           fontWeight={"bold"}
@@ -79,11 +91,10 @@ export default function AboutIndia() {
           fontFamily="Helvetica"
           align={"center"}
         >
-          About India
+          About Goa
         </Text>
         <Text
           fontSize={"md"}
-          fontWeight="700"
           paddingLeft={"2%"}
           paddingRight={"2%"}
           style={{
@@ -121,7 +132,6 @@ export default function AboutIndia() {
         </Text>
         <Text
           fontSize="15px"
-          fontWeight="700"
           paddingLeft={"2%"}
           paddingRight={"2%"}
           style={{
@@ -161,7 +171,6 @@ export default function AboutIndia() {
         </Text>
         <Text
           fontSize="15px"
-          fontWeight="700"
           paddingLeft={"2%"}
           paddingRight={"2%"}
           style={{
@@ -169,51 +178,161 @@ export default function AboutIndia() {
             textJustify: "inter-word",
           }}
         >
-          Birla Institute of Technology & Science, Pilani was declared as an
-          Institution Deemed to be a University under section 3 of the UGC Act
-          in the year 1964, one of the earliest to be so recognized. BITS Pilani
-          has pioneered a number of visionary initiatives in higher education
-          and has established an impeccable and formidable reputation nationally
-          for excellence. BITS Pilani offers UG, PG and PhD programs to over
-          17,000 students across its 5 campuses in Pilani, Goa, Hyderabad,
-          Mumbai and Dubai. The Institute has secured over Rs. 398 crores as
-          external research funding in the last 05 years. State of art
-          facilities have been developed to support cutting edge research, led
-          by students and about 930 faculty members, leading to a Scopus h-index
-          of 156, with 221 patents filed so far, and 41 patents granted. Birla
-          Institute of Technology & Science, Pilani (BITS Pilani) has been
-          consistently ranked high, by both government and private ranking
-          agencies for its innovative processes and capabilities that have
-          enabled it to impart quality education and emerge as the best private
-          science and engineering Institute in India. In recognition of the high
-          standard that BITS Pilani strives to uphold, the University Grant
-          Commission, in 2018, has declared it as an “Institute of Eminence”
-          (IOE).
+          Being a popular tourist destination and a haven for relaxation, Goa
+          offers superb connectivity to major cities throughout the country.
+          Nesting in the lap of verdant hills, overlooking the Zuari River,
+          BITS, Pilani K K Birla Goa Campus is spread over an area of 180 acres.
+          The location of campus is unique in the respect of scenic beauty and
+          panoramic view of picturesque surrounding encompassing Zuari River,
+          hillocks, waterways, forests and landscape. (IOE).
         </Text>
-        <Image src="maps.png"></Image>
+        <Image src="maps.png" mt={"2%"}></Image>
         <Text
           fontSize="15px"
-          fontWeight="700"
           paddingLeft={"2%"}
           paddingRight={"2%"}
           style={{
             textAlign: "justify",
             textJustify: "inter-word",
           }}
+          align={"left"}
+          width={"full"}
         >
           <br></br>
-          Note: BITS Pilani K K Birla Goa Campus is on the side of a bypass road
-          to NH17B and regular buses will not go via the Campus, so avoid taking
-          a local city bus. Pre-paid Taxi cost: Goa International Airport
-          (Dabolim) to BITS Pilani K K Birla Goa Campus: ~Rs. 500/- ($6) Manohar
-          International Airport (Mopa) to BITS Pilani K K Birla Goa Campus: ~Rs.
-          4,000/- ($50) Note: Above rates are approximate rates only. Pre-paid
-          Taxi counters are available at the airport arrival area. One can avail
-          the ‘Goa Miles’, a Government certified transportation portal:
-          https://www.goamiles.com. The rates may vary accordingly and can be
-          higher if not pre-paid. The above rates and information are
-          representative only. Organizers are not responsible for any deviation
-          in prices and information mentioned above.
+          Accessing BITS Pilani Goa Campus is facilitated through diverse
+          transportation options, guaranteeing convenience for both attendees
+          and visitors.
+        </Text>
+        <Text
+          mt={"2%"}
+          fontSize="1.5rem"
+          fontWeight="600"
+          color="#211D70"
+          fontFamily="Helvetica"
+          align={"left"}
+          width="full"
+          padding={"0 2%"}
+        >
+          Air Travel
+        </Text>
+        <Text
+          fontSize="15px"
+          paddingLeft={"2%"}
+          paddingRight={"2%"}
+          style={{
+            textAlign: "justify",
+            textJustify: "inter-word",
+          }}
+          align={"left"}
+          width={"full"}
+        >
+          <br></br>
+          Goa boasts two airports, namely Goa International Airport (Dabolim),
+          situated approximately 5 km away and Manohar International Airport
+          (Mopa), which is roughly at a distance of 55 km from BITS Pilani K K
+          Birla Goa campus, the venue for the symposium. Goa International
+          Airport, being the closest, is extensively connected to major cities
+          across India, providing a time-efficient air travel option. One can
+          find regular flights to this tropical paradise from cities like New
+          Delhi, Mumbai, Bengaluru, Hyderabad, Kochi, and Chennai. The fastest
+          way to reach Goa is often by taking a flight from Mumbai or Bengaluru,
+          with the journey typically lasting around an hour. Air India is
+          recognized as the national carrier. However, travelers can choose
+          among various airlines, including SpiceJet, IndiGo, Air Asia, Akasa
+          Air and Vistara. Upon arrival, pre-paid taxis are readily available to
+          reach the Campus.
+        </Text>
+        <Text
+          mt={"2%"}
+          fontSize="1rem"
+          fontWeight="600"
+          color="#211D70"
+          fontFamily="Helvetica"
+          align={"left"}
+          width="full"
+          padding={"0 2%"}
+        >
+          <u>Pre-paid Taxi service at the Airports</u>
+        </Text>
+        <Text align={"left"} width="full" padding={"0 2%"}>
+          <br></br>
+          Pre-paid Taxi counters are available at the airport arrival area.
+        </Text>
+        <Text align={"left"} width="full" padding={"0 2%"}>
+          <br></br>
+          Goa International Airport (Dabolim) to BITS Pilani K K Birla Goa
+          Campus: ~Rs. 500/- ($6)
+        </Text>
+        <Text align={"left"} width="full" padding={"0 2%"}>
+          <br></br>
+          Manohar International Airport (Mopa) to BITS Pilani K K Birla Goa
+          Campus: ~Rs. 4,000/- ($50)
+        </Text>
+        <Text align={"left"} width="full" padding={"0 2%"}>
+          <br></br>
+          One can also avail the ‘Goa Miles’ cab service via the Government
+          certified transportation portal: https://www.goamiles.com.
+        </Text>
+        <Text align={"left"} width="full" padding={"0 2%"}>
+          <br></br>
+          <u>Note:</u> The rates may vary accordingly and can be higher if not
+          pre-paid. The above rates and information are representative and
+          approximate. Organizers are not responsible for any deviation in
+          prices and information mentioned above.
+        </Text>
+        <Text
+          mt={"2%"}
+          fontSize="1.5rem"
+          fontWeight="600"
+          color="#211D70"
+          fontFamily="Helvetica"
+          align={"left"}
+          width="full"
+          padding={"0 2%"}
+        >
+          Rail Travel
+        </Text>
+        <Text align={"left"} width="full" padding={"0 2%"}>
+          <br></br>
+          Those inclined towards rail travel can commute by train and arrive at
+          Karmali Railway Station, located about 20 km, Madgaon railway station,
+          which is 22 km away or Vasco railway station which is 10 km from BITS
+          Pilani K K Birla Goa Campus. These railway stations have established
+          connections to major cities in the region.
+        </Text>
+        <Text align={"left"} width="full" padding={"0 2%"}>
+          <br></br>
+          Karmali Railway Station to BITS Pilani K K Birla Goa Campus: ~Rs.
+          2,000/- ($25)
+        </Text>
+        <Text align={"left"} width="full" padding={"0 2%"}>
+          <br></br>
+          Madgaon Railway Station to BITS Pilani K K Birla Goa Campus: ~Rs.
+          2,500/- ($30)
+        </Text>
+        <Text align={"left"} width="full" padding={"0 2%"}>
+          <br></br>
+          <u>Note:</u> The above rates and information are representative and
+          approximate. Organizers are not responsible for any deviation in
+          prices and information mentioned above.
+        </Text>
+        <Text
+          mt={"2%"}
+          fontSize="1.5rem"
+          fontWeight="600"
+          color="#211D70"
+          fontFamily="Helvetica"
+          align={"left"}
+          width="full"
+          padding={"0 2%"}
+        >
+          Road Travel
+        </Text>
+        <Text align={"left"} width="full" padding={"0 2%"}>
+          <br></br>
+          The campus is easily reachable by road, with well-maintained highways
+          and road networks linking it to neighboring towns and cities like
+          Mumbai, Bangalore, Pune, Hyderabad etc.
         </Text>
       </Flex>
     </ChakraProvider>

@@ -38,18 +38,18 @@ export default function OrgComm() {
             textJustify: "inter-word",
           }}
         >
-          1. Dr. Kash Mittal<br></br>General Chairman<br></br>
+          1. Dr. Kash Mittal<br></br><span style={{paddingLeft:'14px'}}>General Chairman</span><br></br>
           <br></br>
           2. Prof. Sunil Bhagwat,{"\t"}Director IISER Pune<br></br>
-          Committee Chairman<br></br>
+          <span style={{paddingLeft:'20px'}}>Program Committee Chairman</span><br></br>
           <br></br>
           3. Prof. Srinivas Krishnaswamy,{"\t"} BITS Pilani KK Birla Goa Campus
           <br></br>
-          Local Organising Committee Chairman
+          <span style={{paddingLeft:'20px'}}>Local Organising Committee Chairman</span>
           <br></br>
           <br></br>
-          4. Department of Chemical Engineering<br></br>Local Organizing
-          Committee
+          4. Department of Chemical Engineering<br></br>
+          <span style={{paddingLeft:'20px'}}>Local Organizing Committee</span>
         </Text>
       </Flex>
     </Flex>

@@ -1,6 +1,8 @@
+"use client";
 import React from "react";
 import {
   Box,
+  Button,
   ChakraProvider,
   Flex,
   ListItem,
@@ -30,17 +32,15 @@ function page() {
               textJustify: "inter-word",
             }}
           >
-            <b style={{ fontSize: "1rem" }}>
-              The 24th International Symposium on Surfactants in solution” will
-              be held at BITS Pilani K K Birla Goa Campus from June 16-21, 2024.
-              This Symposium is jointly organized by BITS Pilani K K Birla Goa
-              Campus, IISER Pune and ICT Mumbai, in association with Society for
-              Industrial Chemistry & Indian Society for Surface Science and
-              Technology.
-            </b>
+            The 24th International Symposium on Surfactants in solution” will be
+            held at BITS Pilani K K Birla Goa Campus from June 16-21, 2024. This
+            Symposium is jointly organized by BITS Pilani K K Birla Goa Campus,
+            IISER Pune and ICT Mumbai, in association with Society for
+            Industrial Chemistry & Indian Society for Surface Science and
+            Technology.
             <br></br>
             <br></br>
-            Scope of the Symposium
+            <b style={{ fontSize: "1.5rem" }}>Scope of the Symposium</b>
             <br></br>
             <br></br>
             <UnorderedList>
@@ -75,6 +75,18 @@ function page() {
             </UnorderedList>
           </Text>
         </Box>
+        <Button
+          colorScheme={"orange"}
+          onClick={() => {
+            const link = document.createElement("a");
+            link.download = `SIS2024flyer.pdf`;
+            link.href = "/SIS2024flyer.pdf";
+            link.click();
+          }}
+          mt="2%"
+        >
+          Download SIS 2024 Flyer
+        </Button>
       </Flex>
     </ChakraProvider>
   );

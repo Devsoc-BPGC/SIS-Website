@@ -5,7 +5,7 @@ function Pac() {
   return (
     <Flex p="1.5%" direction={"column"} mb={"2%"} minH={"80vh"}>
       <Heading mt={"2%"} textAlign={"center"} color="#211D70">
-        Scientific Program Committee:
+        Scientific Program Committee
       </Heading>
       <Text
         mt={"2%"}

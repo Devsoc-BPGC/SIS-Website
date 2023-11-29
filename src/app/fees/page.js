@@ -34,7 +34,7 @@ function page() {
           mb={"1%"}
           align={"left"}
         >
-          The Symposium registration commences from 27th November 2023.
+          The Symposium registration commences from 1st December 2023.
           <br></br>
           Early Bird registration closes 15th February 2024.
           <br></br>
@@ -43,10 +43,11 @@ function page() {
         <TableContainer>
           <Table variant="simple">
             <TableCaption fontSize="1rem" fontWeight="600">
-              * Delegates / Students working / studying in non-Indian
-              Universities / Research centers<br></br>
-              ** Delegates / Students working / studying in non-Indian
-              Universities / Research centers
+              * Delegates / Students working or studying in Universities,
+              Research centers or Industry not located or based in India
+              <br></br>
+              ** Delegates / Students working or studying in Universities,
+              Research centers or Industry located or based in India
             </TableCaption>
             <Thead>
               <Tr>
@@ -123,6 +124,7 @@ function page() {
           Symposium account. National delegates and students will need to pay
           the registration fee via the SBI collect portal.
           <b>
+            <br></br>
             <br></br>
             International participants will need to pay the registration fee
             using net banking, details for which are given below:-
