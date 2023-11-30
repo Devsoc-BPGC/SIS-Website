@@ -3,7 +3,7 @@ import { Box, Image, Text, ChakraProvider, Flex } from "@chakra-ui/react";
 export default function AboutIndia() {
   var imgHeight = "7rem";
   const images = [2, 3, 4, 5, 6, 7, 8, 9];
-  const images2 = [1, 2, 3, 4, 5, 6, 7];
+  const images2 = [1, 2, 3, 4, 6, 7];
   return (
     <ChakraProvider>
       <Flex direction={"column"} alignItems="center" mb={"2%"}>
@@ -27,6 +27,8 @@ export default function AboutIndia() {
             fontWeight={"bold"}
             color="#211D70"
             fontFamily="Helvetica"
+            mt="2%"
+            mb="1%"
           >
             About India
           </Text>
@@ -70,7 +72,7 @@ export default function AboutIndia() {
             wonders like the Himalayan mountain range and Kerala's backwaters.
           </Text>
         </Flex>
-        <Flex direction={"row"} justifyContent="center" mt={"2%"}>
+        <Flex direction={"row"} justifyContent="center" mt={"3%"}>
           {images2.map((i) => {
             return (
               <Box height={imgHeight} key={i}>
@@ -90,6 +92,8 @@ export default function AboutIndia() {
           color="#211D70"
           fontFamily="Helvetica"
           align={"center"}
+          mt="2%"
+          mb="1%"
         >
           About Goa
         </Text>
@@ -126,6 +130,8 @@ export default function AboutIndia() {
           color="#211D70"
           fontFamily="Helvetica"
           align={"center"}
+          mt="2%"
+          mb="1%"
         >
           Birla Institute of Technology and Science (BITS) Pilani (Hosting
           Institute)
@@ -162,10 +168,12 @@ export default function AboutIndia() {
         </Text>
         <Text
           ml="3rem"
-          fontSize="1.5rem"
+          fontSize={"4xl"}
           fontWeight="600"
           color="#211D70"
           fontFamily="Helvetica"
+          mt="2%"
+          mb="1%"
         >
           How to reach to BITS Pilani K K Birla Goa Campus, Goa
         </Text>
@@ -186,7 +194,7 @@ export default function AboutIndia() {
           panoramic view of picturesque surrounding encompassing Zuari River,
           hillocks, waterways, forests and landscape. (IOE).
         </Text>
-        <Image src="maps.png" mt={"2%"}></Image>
+        <Image src="maps.png" mt={"2%"} mb={'2%'}></Image>
         <Text
           fontSize="15px"
           paddingLeft={"2%"}

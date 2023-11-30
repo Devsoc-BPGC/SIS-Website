@@ -75,9 +75,9 @@ const costs = {
   "Academic Delegate (International)": "$450",
   "Industry Delegate (International)": "$450",
   "International Student": "$200",
-  "Academic Delegate (National)": "₹7,000",
-  "Industry Delegate (National)": "₹10,000",
-  "Student (National)": "₹3,500",
+  "Academic Delegate (From India)": "₹7,000",
+  "Industry Delegate (From India)": "₹10,000",
+  "Student (From India)": "₹3,500",
   National: "₹2,000",
   International: "$100",
 };
@@ -85,7 +85,7 @@ const Form1 = (props) => {
   return (
     <>
       <Heading w="100%" textAlign={"center"} fontWeight="normal" mb="2%">
-        Invitee Information
+        Delegate Information
       </Heading>
       <Flex>
         <FormControl mr="5%" isRequired>
@@ -200,17 +200,26 @@ const Form1 = (props) => {
                 Industry Delegate {"(International)"}
               </Radio>
               <Radio value="International Student">International Student</Radio>
-              <Radio value="Academic Delegate (National)">
-                Academic Delegate {"(National)"}
+              <Radio value="Academic Delegate (From India)">
+                Academic Delegate {"(From India)"}
               </Radio>
-              <Radio value="Industry Delegate (National)">
-                Industry Delegate {"(National)"}
+              <Radio value="Industry Delegate (From India)">
+                Industry Delegate {"(From India)"}
               </Radio>
-              <Radio value="Student (National)">Student {"(National)"}</Radio>
+              <Radio value="Student (From India)">
+                Student {"(From India)"}
+              </Radio>
             </VStack>
           </RadioGroup>
         </FormControl>
       </FormControl>
+      <Text mt={"3%"}>
+        International : Delegates / Students working or studying in
+        Universities, Research centers or Industry not located or based in India
+        <br></br>
+        From India : Delegates / Students working or studying in Universities,
+        Research centers or Industry located or based in India
+      </Text>
     </>
   );
 };
@@ -469,7 +478,7 @@ const Form3 = (props) => {
   return (
     <>
       <Heading w="100%" textAlign={"center"} fontWeight="normal">
-        Guest Information
+        Accompanying Guest Information
       </Heading>
       <Flex
         mt="2%"
@@ -965,7 +974,7 @@ const Form4 = (props) => {
           <h2>
             <AccordionButton>
               <Box as="span" flex="1" textAlign="left">
-                Guest Information
+                Accompanying Guest Information
               </Box>
               <AccordionIcon />
             </AccordionButton>
@@ -1060,7 +1069,12 @@ export default function Register() {
   s2 = Object.keys(validate_2(formData)).length == 0;
   s3 = Object.keys(validate_3(formData)).length == 0;
   return complete === "yes" ? (
-    <Flex direction={"column"} alignItems="center" justifyContent={"center"} minH="80vh">
+    <Flex
+      direction={"column"}
+      alignItems="center"
+      justifyContent={"center"}
+      minH="80vh"
+    >
       <Heading>You have already submitted an entry</Heading>
       <Button
         onClick={() => {
@@ -1068,7 +1082,7 @@ export default function Register() {
           setcomplete("no");
         }}
         mt="2%"
-        colorScheme={'orange'}
+        colorScheme={"orange"}
       >
         {" "}
         Click here to fill another form
@@ -1078,7 +1092,7 @@ export default function Register() {
           router.push("/payments");
         }}
         mt="2%"
-        colorScheme={'orange'}
+        colorScheme={"orange"}
       >
         Click here to go to the payment portal
         {" (only for national participants)"}
@@ -1088,36 +1102,36 @@ export default function Register() {
           onOpen();
         }}
         mt="2%"
-        colorScheme={'orange'}
+        colorScheme={"orange"}
       >
         Click here for payment instructions
         {" (only for international participants)"}
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>International Payment</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <b>International Delegate have to pay to the given account</b>
-              <br></br>
-              Name - BITS Pilani K K Birla Goa Campus<br></br>
-              Amount - {costs[formData.registrationType]}
-              <br></br>
-              Bank - State Bank of India<br></br>
-              Branch - BITS Pilani Goa Centre<br></br>
-              Account no. 30803684122<br></br>
-              IFSC code - SBIN0010720<br></br>
-              SWIFT Code - SBININBB229<br></br>
-            </ModalBody>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>International Payment</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <b>International Delegate have to pay to the given account</b>
+            <br></br>
+            Name - BITS Pilani K K Birla Goa Campus<br></br>
+            Amount - {costs[formData.registrationType]}
+            <br></br>
+            Bank - State Bank of India<br></br>
+            Branch - BITS Pilani Goa Centre<br></br>
+            Account no. 30803684122<br></br>
+            IFSC code - SBIN0010720<br></br>
+            SWIFT Code - SBININBB229<br></br>
+          </ModalBody>
 
-            <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={onClose}>
-                Close
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Flex>
   ) : (
     <ChakraProvider>

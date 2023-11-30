@@ -14,27 +14,31 @@ function Pac() {
           textJustify: "inter-word",
         }}
       >
-        1. Prof. Jayesh Bellare<br></br>
+        1. Prof. Sunil Bhagwat<br></br>
+        Director<br></br>
+        IISER Pune<br></br>
+        <br></br>
+        2. Prof. Jayesh Bellare<br></br>
         Professor, Department of Chemical Engineering<br></br>
         IIT Bombay<br></br>
         <br></br>
-        2. Prof. Jaideep Chatterjee<br></br>
+        3. Prof. Jaideep Chatterjee<br></br>
         Professor, Department of Chemical Engineering<br></br>
         BITS Pilani, Hyderabad Campus<br></br>
         <br></br>
-        3. Prof. Amiya Panda<br></br>
+        4. Prof. Amiya Panda<br></br>
         Professor, Department of Chemistry<br></br>
         Vidhyasagar University<br></br>
         <br></br>
-        4. Dr. Hrishikesh Mirgal<br></br>
+        5. Dr. Hrishikesh Mirgal<br></br>
         General Manager - Applications<br></br>
         Croda International<br></br>
         <br></br>
-        5. Prof. Kallol K. Ghosh<br></br>
+        6. Prof. Kallol K. Ghosh<br></br>
         HoD, Chemistry<br></br>
         Pt. Ravishankar Shukla University, Raipur<br></br>
         <br></br>
-        6. Dr. Parag Naik<br></br>
+        7. Dr. Parag Naik<br></br>
         Lead Scientist<br></br>
         ITC Limited, Bengaluru<br></br>
       </Text>

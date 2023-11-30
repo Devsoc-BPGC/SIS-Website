@@ -1,5 +1,5 @@
 "use client";
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text,Link } from "@chakra-ui/react";
 import React from "react";
 import Puc from "../HomePage/Puc";
 export default function symposiumoverview() {
@@ -32,6 +32,16 @@ export default function symposiumoverview() {
         Campus of Birla Institute of Technology &amp; Science (BITS) Pilani from
         June 16-21, 2024. We look forward to hosting you in Goa in June 2024 and
         to make SIS2024 a memorable scientific and cultural experience.
+      </Text>
+      <Text
+        mt={"2%"}
+        padding={"0 2%"}
+        style={{
+          textAlign: "justify",
+          textJustify: "inter-word",
+        }}
+      >
+        for more details, visit <Link href="http://surfinsol.org">www.surfinsol.org</Link>
       </Text>
     </Flex>
   );

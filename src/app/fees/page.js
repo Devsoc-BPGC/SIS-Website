@@ -61,27 +61,27 @@ function page() {
                 <Td>$450</Td>
               </Tr>
               <Tr>
-                <Td>International Students</Td>
+                <Td>International* Students</Td>
                 <Td>$200</Td>
               </Tr>
               <Tr>
-                <Td>Academic Delegates (National**)</Td>
+                <Td>Academic Delegates (From India**)</Td>
                 <Td>₹7,000</Td>
               </Tr>
               <Tr>
-                <Td>Students (National)</Td>
+                <Td>Students (From India**)</Td>
                 <Td>₹3,500</Td>
               </Tr>
               <Tr>
-                <Td>Industry Delegates (National)</Td>
+                <Td>Industry Delegates (From India**)</Td>
                 <Td>₹10,000</Td>
               </Tr>
               <Tr>
-                <Td>Accompanying guests (International)</Td>
+                <Td>Accompanying guest (International*)</Td>
                 <Td>$100</Td>
               </Tr>
               <Tr>
-                <Td>Accompanying guests (National)</Td>
+                <Td>Accompanying guest (From India**)</Td>
                 <Td>₹2,000</Td>
               </Tr>
             </Tbody>
@@ -105,11 +105,6 @@ function page() {
           speakers, participants or accompanying guests. Accommodation related
           information will be available separately on the SIS2024 webpage.
           <br></br>
-          <br></br>
-          <b style={{ margin: "auto", fontSize: "1.2rem" }}>
-            Invited speakers will need to register and need not pay the
-            registration fee.
-          </b>
         </Text>
         <Text
           paddingLeft={"2%"}
