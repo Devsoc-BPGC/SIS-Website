@@ -34,7 +34,7 @@ function page() {
           mb={"1%"}
           align={"left"}
         >
-          The Symposium registration commences from 1st December 2023.
+          The Symposium registration commences from 4th December 2023.
           <br></br>
           Early Bird registration closes 15th February 2024.
           <br></br>

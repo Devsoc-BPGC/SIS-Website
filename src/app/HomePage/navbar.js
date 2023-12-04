@@ -325,11 +325,6 @@ const NAV_ITEMS = [
   },
   {
     label: 'Contact',
-    children: [
-      {
-        label: 'Local Organizing Committee',
-        href: '/contact',
-      }
-    ]
+    href: '/contact',
   },
 ]

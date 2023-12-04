@@ -192,7 +192,7 @@ export default function AboutIndia() {
           BITS, Pilani K K Birla Goa Campus is spread over an area of 180 acres.
           The location of campus is unique in the respect of scenic beauty and
           panoramic view of picturesque surrounding encompassing Zuari River,
-          hillocks, waterways, forests and landscape. (IOE).
+          hillocks, waterways, forests and landscape.
         </Text>
         <Image src="maps.png" mt={"2%"} mb={'2%'}></Image>
         <Text
