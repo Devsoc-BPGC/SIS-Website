@@ -16,9 +16,9 @@ function Marker() {
         <Text color="#211D70" display={"inline"} fontWeight={'bold'}>
         {" "}has started.
         </Text>
-        &nbsp;&nbsp;&nbsp;Abstract submission to start from{" "}
+        &nbsp;&nbsp;&nbsp;Abstract submissions{" "}
         <Text color={"#211D70"} display={"inline"} fontWeight={'bold'}>
-          December 15, 2023.
+          Open
         </Text>
       </marquee>
     </Box>

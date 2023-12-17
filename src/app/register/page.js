@@ -453,7 +453,7 @@ const Form2 = (props) => {
           }}
           mt="2%"
         >
-          Work Phone
+          Contact Number (landline or mobile): Please enter +country code followed by the number with no dash or hyphen
         </FormLabel>
         <Input
           type="number"
