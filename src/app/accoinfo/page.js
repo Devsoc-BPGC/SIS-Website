@@ -12,7 +12,15 @@ import Image from "next/image";
 import Link from "next/link";
 function accoinfo() {
   return (
-    <Flex minH={"100vh"} direction={"column"} p={"1%"}>
+    <Flex
+      minH={"100vh"}
+      direction={"column"}
+      p={"1%"}
+      style={{
+        textAlign: "justify",
+        textJustify: "inter-word",
+      }}
+    >
       <Heading textAlign={"center"} mt={"2%"} color="#211D70">
         Staying In Goa
       </Heading>
@@ -128,14 +136,14 @@ function accoinfo() {
             textDecoration: "underline",
             cursor: "pointer",
           }}
-          href={'/hotels.pdf'}
+          href={"/hotels.pdf"}
         >
           Click here
         </Link>{" "}
         to see the list of important hotels in Goa which can be booked through
         Takara Tours. Please note, this list is not exhaustive.
       </Text>
-      <Text mt={"1%"} color="#211D70" fontWeight={'bold'}>
+      <Text mt={"1%"} color="#211D70" fontWeight={"bold"}>
         This agency is not associated with the Symposium and is an independent
         entity. Participants are free to make their travel and accommodation
         through any other agency as appropriate.

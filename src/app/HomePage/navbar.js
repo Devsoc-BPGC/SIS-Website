@@ -286,6 +286,10 @@ const NAV_ITEMS = [
         href: '/overview',
       },
       {
+        label: 'The Organizers',
+        href: '/organizers',
+      },
+      {
         label: 'Venue',
         href: '/aboutlocation',
       },
