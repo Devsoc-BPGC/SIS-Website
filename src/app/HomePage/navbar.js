@@ -279,7 +279,7 @@ const NAV_ITEMS = [
     ],
   },
   {
-    label: '2024 Conference',
+    label: '2024 Symposium',
     children: [
       {
         label: 'SIS 2024 Overview',
