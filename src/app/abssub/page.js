@@ -99,6 +99,11 @@ function abssub() {
           click here
         </Link>
       </Text>
+      <Text marginTop={"0.5%"} color={"#211D70"} fontWeight="bold">
+        Selected manuscripts post the event will be published in the special
+        issue of Journal of Surfactants and Detergents (Wiley) subject to the
+        peer review process of the Journal
+      </Text>
     </Flex>
   );
 }
