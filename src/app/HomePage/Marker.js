@@ -12,9 +12,9 @@ function Marker() {
       style={{ wordSpacing: "0.1em" }}
     >
       <marquee scrollamount="7">
-        Early bird registration 
+        Early bird registration closes on
         <Text color="#211D70" display={"inline"} fontWeight={'bold'}>
-        {" "}has started.
+        {" "}15th May 2024
         </Text>
         &nbsp;&nbsp;&nbsp;Abstract submissions{" "}
         <Text color={"#211D70"} display={"inline"} fontWeight={'bold'}>
