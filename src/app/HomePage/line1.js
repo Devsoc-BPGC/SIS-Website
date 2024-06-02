@@ -58,12 +58,10 @@ export default function Line1() {
         <Text fontFamily={"sans-serif"} color={"black"} fontSize={"xl"}>
           Birla Institute Of Technology & Science Pilani, K.K. Birla Goa Campus
         </Text>
-        <Flex direction={'column'} height={'18%'} mt={'1%'} width={{base:'100%',md:'80%'}} textAlign={'center'} borderTop={'2px solid #211D70'}>
+        <Flex direction={'row'} height={'22%'} mt={'1%'} width={{base:'100%',md:'80%'}} textAlign={'center'} borderTop={'2px solid #211D70'} paddingTop={'1%'} alignItems={'center'}>
           <Text>Sponsored by : </Text>
-          <Flex mt={'1%'} direction={'row'} alignItems={'center'} justifyContent={'center'}>
-            <Image src="/kruss.jpg" width={50} height={50} alt={"kruss"} style={{marginLeft:'2%'}} />
-            <Image src="/kv.jpg" width={50} height={50} alt={"kv"} style={{marginLeft:'2%'}}/>
-          </Flex>
+          <a href="http://www.kruss-scientific.com" style={{marginLeft:'2%'}}><Image src="/kruss.jpg" width={80} height={80} alt={"kruss"} /></a>
+          <a href="http://www.kvfire.com" style={{marginLeft:'2%'}}><Image src="/kv.jpg" width={80} height={80} alt={"kv"}/></a>
         </Flex>
       </Flex>
     </Flex>
