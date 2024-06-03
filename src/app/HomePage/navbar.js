@@ -41,17 +41,6 @@ export default function Navbar() {
         borderColor={useColorModeValue('gray.200', 'gray.900')}
         align={'center'}
         justifyContent={'center'}>
-        <Flex
-          flex={{ base: 1, md: 'auto' }}
-          ml={{ base: -2 }}
-          display={{ base: 'flex', md: 'none' }}>
-          <IconButton
-            onClick={onToggle}
-            icon={isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />}
-            variant={'ghost'}
-            aria-label={'Toggle Navigation'}
-          />
-        </Flex>
         <Flex flex={{ base: 2, md: 1 }} justify={{ base: 'start', md: 'start' }}>
           <Flex
             direction={'column'}
@@ -59,16 +48,16 @@ export default function Navbar() {
             <Text
                 textAlign={useBreakpointValue({ base: 'left', md: 'left' })}
                 fontFamily={'heading'}
-                fontSize={{base : 'l', md: 'xl'}}
+                fontSize={{base : 'sm', md: 'xl'}}
                 fontWeight={'bold'}
                 color={useColorModeValue('gray.800', 'white')}>
-                Surfactants in Solution(SIS)
+                Surfactants in Solution (SIS)
             </Text>
             <Text
                 textAlign={useBreakpointValue({ base: 'left', md: 'left' })}
                 fontFamily={'heading'}
                 color={useColorModeValue('gray.800', 'white')}
-                fontSize={{base: 'xs', md: 'l'}}
+                fontSize={{base: '2xs', md: 'l'}}
                 >
                 24th International Symposium
             </Text>
@@ -82,12 +71,48 @@ export default function Navbar() {
         <Stack
           flex={{ base: 1, md: 0 }}
           justify={'flex-end'}
-          direction={'row'}
-          spacing={6}>
+          direction={{base: 'column', sm: 'row'}}
+          spacing={1}
+          >
           <Button
             as={'a'}
             display={{ base: 'inline-flex', md: 'inline-flex' }}
-            fontSize={'sm'}
+            fontSize={{base: 'xs', md: 'sm'}}
+            size={{base: 'xs', md: 'md'}}
+            fontWeight={600}
+            color={'black'}
+            bg={'#6AD4D7'}
+            href={'/abstractbook'}
+            _hover={{
+              bg: 'orange.50',
+              color: 'orange.400',
+              border: '0.5px solid black',
+              borderRadius : '5px'
+            }}>
+            Abstract Book
+          </Button>
+          <Button
+            as={'a'}
+            display={{ base: 'inline-flex', md: 'inline-flex' }}
+            fontSize={{base: 'xs', md: 'sm'}}
+            size={{base: 'xs', md: 'md'}}
+            fontWeight={600}
+            color={'black'}
+            bg={'yellow.400'}
+            href={'/symposiumschedule'}
+            _hover={{
+              bg: 'orange.50',
+              color: 'orange.400',
+              border: '0.5px solid black',
+              borderRadius : '5px'
+            }}>
+            Symposium Schedule
+          </Button>
+          <Button
+            as={'a'}
+            display={{ base: 'inline-flex', md: 'inline-flex' }}
+            fontSize={{base: 'xs', md: 'sm'}}
+            size={{base: 'xs', md: 'md'}}
             fontWeight={600}
             color={'white'}
             bg={'orange.400'}
@@ -101,6 +126,17 @@ export default function Navbar() {
             Register Now
           </Button>
         </Stack>
+        <Flex
+          // flex={{ base: 1, md: 'auto' }}
+          // ml={{ base: -2 }}
+          display={{ base: 'flex', md: 'none' }}>
+          <IconButton
+            onClick={onToggle}
+            icon={isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />}
+            variant={'ghost'}
+            aria-label={'Toggle Navigation'}
+          />
+        </Flex>
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
