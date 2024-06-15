@@ -99,7 +99,9 @@ export default function Navbar() {
             fontWeight={600}
             color={'black'}
             bg={'yellow.400'}
-            href={'/symposiumschedule'}
+            href={'/sis_schedule.pdf'}
+            target='_blank'
+            rel='noopener noreferrer'
             _hover={{
               bg: 'orange.50',
               color: 'orange.400',
