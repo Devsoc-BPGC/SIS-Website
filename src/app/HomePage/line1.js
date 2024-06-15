@@ -59,9 +59,12 @@ export default function Line1() {
           Birla Institute Of Technology & Science Pilani, K.K. Birla Goa Campus
         </Text>
         <Flex direction={'row'} height={'22%'} mt={'1%'} width={{base:'100%',md:'80%'}} textAlign={'center'} borderTop={'2px solid #211D70'} paddingTop={'1%'} alignItems={'center'}>
-          <Text>Sponsored by : </Text>
+          <Text>Sponsored by: </Text>
+          <a href="https://www.galaxysurfactants.com/" style={{marginLeft:'2%'}}><Image src="/galaxy.jpg" width={100} height={80} alt={"galaxy"} /></a>
           <a href="http://www.kruss-scientific.com" style={{marginLeft:'2%'}}><Image src="/kruss.jpg" width={80} height={80} alt={"kruss"} /></a>
+          <a href="https://www.unilever.com/" style={{marginLeft:'2%'}}><Image src="/unilever.jpg" width={80} height={80} alt={"unilever"}/></a>
           <a href="http://www.kvfire.com" style={{marginLeft:'2%'}}><Image src="/kv.jpg" width={80} height={80} alt={"kv"}/></a>
+          <a href="https://www.fineorganics.com" style={{marginLeft:'2%'}}><Image src="/fine.jpg" width={100} height={80} alt={"fine"}/></a>
         </Flex>
       </Flex>
     </Flex>
