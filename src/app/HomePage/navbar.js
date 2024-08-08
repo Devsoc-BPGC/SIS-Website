@@ -82,7 +82,7 @@ export default function Navbar() {
             fontWeight={600}
             color={'black'}
             bg={'#6AD4D7'}
-            href={'/abstractbook'}
+            href={'/abstract_book.pdf'}
             _hover={{
               bg: 'orange.50',
               color: 'orange.400',
@@ -119,11 +119,12 @@ export default function Navbar() {
             color={'white'}
             bg={'orange.400'}
             href={'/register'}
+            isDisabled={true}
             _hover={{
-              bg: 'orange.50',
-              color: 'orange.400',
-              border: '0.5px solid black',
-              borderRadius : '5px'
+              // bg: 'orange.50',
+              // color: 'orange.400',
+              // border: '0.5px solid black',
+              // borderRadius : '5px'
             }}>
             Register Now
           </Button>
